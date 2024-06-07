@@ -8,11 +8,12 @@
     <div class="h-[40px] w-full rounded-[8px] relative border "
          :class="[hasError ? 'border-[#F44336]' : 'border-[#133C3E]']"
     >
-      <input type="text" class="absolute left-[1px] right-[1px] top-[1px] bottom-[1px] text-right  rounded-[8px] outline-none focus:outline-none pr-[20px] pl-[20px] placeholder:text-[#A9A7A7]"
+      <input type="text" class="absolute text-right ltr-dir left-[1px] right-[1px] top-[1px] bottom-[1px]  rounded-[8px] outline-none focus:outline-none pr-[20px] pl-[20px] placeholder:text-[#A9A7A7]"
              @input="validateTextDebounce"
              v-model="value"
              :placeholder="placeholder"
       >
+      <span class="font-medium text-[22px] leading-[30px] text-black absolute left-[10px] top-[6px]">IR</span>
     </div>
     <div class="w-full flex flex-row justify-start items-center" v-if="hasError">
       <ErrorRedIcon />

@@ -1,11 +1,14 @@
 <template>
-  <div>
-    learn!
+  <div class="w-full h-full flex flex-col justify-start items-start">
+    <Header title="آموزش"/>
+    <Main />
   </div>
 </template>
 
 <script setup lang="ts">
 import {definePageMeta} from "#imports";
+import Header from "~/components/learn/Header.vue";
+import Main from "~/components/learn/Main.vue";
 
 definePageMeta({
   layout: "dashboard",

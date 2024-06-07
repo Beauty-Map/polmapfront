@@ -24,7 +24,7 @@
           </div>
           <span class="font-medium text-[22px] text-white leading-[34px] text-center mt-[10px]">موجودی</span>
           <div class="w-full gap-x-[30px] flex flex-row justify-start items-center mt-[10px]">
-            <nuxt-link to="/withdraw" class="text-center flex flex-col justify-start items-center">
+            <nuxt-link to="/financial" class="text-center flex flex-col justify-start items-center">
               <WidthrawIcon />
               <span class="font-medium text-center text-[18px] text-white leading-[28px]">برداشت موجودی</span>
             </nuxt-link>

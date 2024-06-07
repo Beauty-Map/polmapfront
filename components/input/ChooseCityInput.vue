@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import ErrorRedIcon from "~/components/icons/ErrorRedIcon.vue";
-import ChooseCityDrawer from "~/components/drawer/ChooseCityDrawer.vue";
+import ChooseCityDrawer from "~/components/choose-city-drawer/ChooseCityDrawer.vue";
 import {useDrawerStore} from "~/store/Drawer";
 
 const emits = defineEmits(['update:modelValue'])
