@@ -1,0 +1,18 @@
+<template>
+  <div>
+    statistics!
+  </div>
+</template>
+
+<script setup lang="ts">
+import {definePageMeta} from "#imports";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth"
+})
+</script>
+
+<style scoped>
+
+</style>
