@@ -6,6 +6,7 @@
       <SideBar />
       <slot />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 import PageLoading from "~/components/loading/PageLoading.vue";
 import MainHeader from "~/components/header/MainHeader.vue";
 import SideBar from "~/components/sidebar/SideBar.vue";
+import Footer from "~/components/footer/Footer.vue";
 const nuxt = useNuxtApp()
 const loading = ref<boolean>(true)
 nuxt.hook('page:loading:start', () => {
