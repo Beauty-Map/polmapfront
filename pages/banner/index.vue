@@ -1,14 +1,14 @@
 <template>
   <div class="w-full h-full flex flex-col justify-start items-start">
-    <Header title="امور مالی"/>
+    <Header title="دریافت بنر تبلیغاتی"/>
     <Main />
   </div>
 </template>
 
 <script setup lang="ts">
 import {definePageMeta} from "#imports";
-import Header from "~/components/financial/Header.vue";
-import Main from "~/components/financial/Main.vue";
+import Header from "~/components/banner/Header.vue";
+import Main from "~/components/banner/Main.vue";
 
 definePageMeta({
   layout: "dashboard",

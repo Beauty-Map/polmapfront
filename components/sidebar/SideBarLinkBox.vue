@@ -15,6 +15,11 @@
         <CourseIcon />
       </template>
     </SideBarLink>
+    <SideBarLink to="/banner" title="دریافت بنر تبلیغاتی">
+      <template #icon>
+        <BannerIcon />
+      </template>
+    </SideBarLink>
     <SideBarLink to="/statistics" title="آمار و گزارشات">
       <template #icon>
         <StatisticIcon />

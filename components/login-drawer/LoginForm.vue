@@ -3,10 +3,7 @@
     <TelInput title="شماره موبایل" v-model="form.phone_number"/>
     <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
     <ResetPasswordLink class="mt-[18]"/>
-    <PolicyAndRulesButton class="mt-[18px]" v-model="form.accept_policy"/>
-    <MainActionButton class="mt-[18px]" @click="doLogin">
-      <div class="text-white text-center text-[20px] leading-[30px]">ورود</div>
-    </MainActionButton>
+    <PolicyAndRulesButton class="mt-[18px]" v-model="form.accept_policy"/>÷
     <BottomText class="mt-[18px]" @click="openRegisterModal" title="ثبت نام"/>
   </div>
 </template>

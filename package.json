@@ -12,6 +12,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "apexcharts": "^3.49.1",
+    "circle-progress.vue": "^3.2.1",
     "jalaliday": "^2.3.0",
     "nuxt": "^3.11.2",
     "nuxt-auth-sanctum": "^0.3.14",
