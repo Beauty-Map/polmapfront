@@ -3,16 +3,15 @@
     <div class="w-full flex flex-row justify-start items-start flex-wrap">
       <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px]">
         <h1 class="text-right text-black font-normal text-[30px] leading-[35px]">تعداد کاربران دعوت شده</h1>
-        <div class="w-full flex flex-row justify-between items-center flex-wrap">
-          <client-only>
-            <apexchart
-                v-if="hasWindow"
-                :key="series"
-                height="200"
-                :options="chartOptions"
-                :series="series"
-            />
-          </client-only>
+        <div class="w-full flex flex-row justify-center items-center flex-wrap">
+          <CircleProgressBar :value="420" :max="1000" colorUnfilled="blue" size="160" rounded>
+            <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
+              <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.2385 2.05566C14.8159 1.05566 16.2593 1.05566 16.8366 2.05566L29.5297 24.0407C30.1071 25.0407 29.3854 26.2907 28.2307 26.2907H2.84449C1.68979 26.2907 0.968099 25.0407 1.54545 24.0407L14.2385 2.05566Z" stroke="#141414"/>
+              </svg>
+              <span>برداشت های قبل</span>
+            </span>
+          </CircleProgressBar>
         </div>
       </div>
       <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px]">
@@ -56,45 +55,9 @@
 <script setup lang="ts">
 import WidthrawIcon from "~/components/icons/WidthrawIcon.vue";
 import AccountDetailIcon from "~/components/icons/AccountDetailIcon.vue";
+import { CircleProgressBar } from 'circle-progress.vue';
 
 const user = useSanctumUser()
-const series = ref([45])
-const chartOptions = ref({
-  chart: {
-    height: 200,
-    type: 'radialBar',
-  },
-  plotOptions: {
-    radialBar: {
-      hollow: {
-        margin: 15,
-        size: '65%',
-        image: '/images/user_stat.svg',
-        imageWidth: 32,
-        imageHeight: 32,
-        imageClipped: false
-      },
-      dataLabels: {
-        name: {
-          show: false,
-          color: '#fff'
-        },
-        value: {
-          show: true,
-          color: '#333',
-          offsetY: 70,
-          fontSize: '10px'
-        }
-      }
-    }
-  },
-
-  stroke: {
-    lineCap: 'round'
-  },
-  labels: ['Volatility'],
-})
-const hasWindow = computed(() => !!window)
 </script>
 
 <style scoped>

@@ -6,7 +6,7 @@
     <nuxt-link to="/aboutus">
       درباره ما
     </nuxt-link>
-    <nuxt-link to="/aboutus">
+    <nuxt-link to="/support">
       تماس با ما
     </nuxt-link>
   </div>

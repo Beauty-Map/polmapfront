@@ -12,8 +12,8 @@
       <span class="mr-1 text-[#F44336] text-[10px] leading-[12px]">{{errorText}}</span>
     </div>
     <SubjectModal :open="showChooseSubject" @close="closeChooseSubjectModal">
-      <div class=" w-full h-full min-h-[293px] justify-center items-start gap-x-[5px] gap-y-[5px] px-[28px] py-[28px] flex flex-row flex-wrap">
-        <div @click.stop="chooseSubject(s)" class="min-h-[45px] flex justify-center items-center border border-[#133C3E] text-[#133C3E] font-medium text-[12px] leading-[18px] text-center bg-[#F7F5C4] w-[125px] py-[8px] px-[16px] rounded-[10px]" v-for="(s, i) in subjects" :key="i">
+      <div class=" w-full min-h-[100px] px-[28px] py-[28px] grid grid-cols-2 gap-[5px] ">
+        <div @click.stop="chooseSubject(s)" class="cursor-pointer w-[45%] min-w-[200px] min-h-[45px] flex justify-center items-center border border-[#133C3E] text-[#133C3E] font-medium text-[12px] leading-[18px] text-center bg-[#F7F5C4] py-[8px] px-[16px] rounded-[10px]" v-for="(s, i) in subjects" :key="i">
           {{ s.title }}
         </div>
       </div>

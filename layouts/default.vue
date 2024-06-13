@@ -1,7 +1,6 @@
 <template>
-  <div class="page h-full w-full flex flex-col relative">
+  <div class="page h-full w-full flex flex-col relative" :class="isMobile ? 'px-[25px]' : ''">
     <PageLoading v-if="loading"/>
-    <MainHeader />
     <slot />
   </div>
 </template>
@@ -11,7 +10,12 @@
 import PageLoading from "~/components/loading/PageLoading.vue";
 import MainHeader from "~/components/header/MainHeader.vue";
 const nuxt = useNuxtApp()
+const device = useDevice()
 const loading = ref<boolean>(true)
+
+const isMobile = computed(() => {
+  return device.isMobile
+})
 nuxt.hook('page:loading:start', () => {
   loading.value = true
 })

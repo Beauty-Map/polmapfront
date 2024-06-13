@@ -3,7 +3,10 @@
     <TelInput title="شماره موبایل" v-model="form.phone_number"/>
     <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
     <ResetPasswordLink class="mt-[18]"/>
-    <PolicyAndRulesButton class="mt-[18px]" v-model="form.accept_policy"/>÷
+    <PolicyAndRulesButton class="mt-[18px]" v-model="form.accept_policy"/>
+    <MainActionButton class="mt-[24px]" @click="doLogin">
+      <div class="text-white text-center text-[20px] leading-[30px]">ورود</div>
+    </MainActionButton>
     <BottomText class="mt-[18px]" @click="openRegisterModal" title="ثبت نام"/>
   </div>
 </template>
@@ -21,7 +24,7 @@ const app = useNuxtApp()
 const router = useRouter()
 const auth = useSanctumAuth()
 
-const form = ref<ILoginForm>({
+const form = ref({
   phone_number: '',
   password: '',
   accept_policy: false,
