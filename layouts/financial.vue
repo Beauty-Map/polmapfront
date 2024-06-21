@@ -1,10 +1,10 @@
 <template>
-  <div class="page h-full w-full flex flex-col relative">
+  <div class="page h-full w-full bg-[#2920D9] flex flex-col relative">
     <PageLoading v-if="loading"/>
     <MainHeader class="md:flex hidden"/>
     <AppMenuDrawer />
     <UserProfileDrawer />
-    <div class="w-full min-h-screen px-[34px] py-[20px] flex flex-row justify-start items-start">
+    <div class="w-full min-h-screen flex bg-[#2920D9] md:bg-white md:px-[34px] md:py-[20px] flex-row justify-start items-start">
       <SideBar class="md:flex hidden"/>
       <slot />
     </div>

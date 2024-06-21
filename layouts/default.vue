@@ -14,7 +14,7 @@ const device = useDevice()
 const loading = ref<boolean>(true)
 
 const isMobile = computed(() => {
-  return device.isMobile
+  return device.isMobileOrTablet
 })
 nuxt.hook('page:loading:start', () => {
   loading.value = true

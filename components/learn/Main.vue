@@ -1,12 +1,12 @@
 <template>
-  <div class="w-full h-full border border-[#A9A7A7] rounded-[50px] mt-[30px] py-[16px] px-[40px] flex flex-col justify-start items-start">
-    <div class="w-full flex flex-row flex-wrap gap-x-[20px] gap-y-[20px]">
+  <div class="w-full h-full md:border md:border-[#A9A7A7] md:rounded-[50px] mt-[30px] py-[16px] md:px-[40px] flex flex-col justify-start items-start">
+    <div class="w-full flex flex-row flex-wrap sm:gap-x-[10%] md:gap-x-[20px] gap-y-[20px]">
       <CourseItem
         v-for="(c,i) in courses"
         :key="i"
         :title="c.title"
         @click="openCourse(c)"
-        class="w-[30%]"
+        class="md:w-[30%] sm:w-[45%] w-full"
         :selected="selectedCourse && selectedCourse.id == c.id"
       />
     </div>

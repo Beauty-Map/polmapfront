@@ -6,12 +6,18 @@
       </template>
       <template #title>داشبورد</template>
     </MenuLink>
+    <MenuLink v-if="selectedApp" to="/app">
+      <template #icon>
+        <ProfileIcon />
+      </template>
+      <template #title>{{ selectedApp.title }}</template>
+    </MenuLink>
     <MenuLink class="relative" @click="openProfileDrawer" :is-link="false">
       <template #icon>
         <ProfileIcon />
       </template>
       <template #title>پروفایل</template>
-      <template #sub-icon v-if="!user.is_artist_profile_completed">
+      <template #sub-icon v-if="!user.is_profile_completed">
         <DangerIcon @click="openProfileDrawer"/>
       </template>
     </MenuLink>
@@ -60,12 +66,16 @@ import FinancialIcon from "~/components/icons/SideBar/FinancialIcon.vue";
 import ContactusIcon from "~/components/icons/SideBar/ContactusIcon.vue";
 import ProfileIcon from "~/components/icons/SideBar/ProfileIcon.vue";
 import {useDrawerStore} from "~/store/Drawer";
+import SideBarLink from "~/components/sidebar/SideBarLink.vue";
+import {useAppStore} from "~/store/App";
 
 const store = useDrawerStore()
 const user = useSanctumUser()
+const selectedApp = computed(() => useAppStore().getSelectedApp)
 
 const openProfileDrawer = () => {
-  store.openProfileDrawer()
+  router.push('/profile')
+  // store.openProfileDrawer()
 }
 </script>
 

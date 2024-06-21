@@ -50,7 +50,8 @@ const goBack = () => {
   store.closeMenuDrawer()
 }
 const openProfileDrawer = () => {
-  store.openProfileDrawer()
+  router.push('/profile')
+  // store.openProfileDrawer()
 }
 
 const goToWalletPage = () => {

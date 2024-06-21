@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import {definePageMeta} from "#imports";
-import Header from "~/components/learn/Header.vue";
+import Header from "~/components/dashboard/Header.vue";
 import Main from "~/components/learn/Main.vue";
 
 definePageMeta({

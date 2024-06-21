@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useDrawerStore = defineStore('drawer', {
     state: () => ({
         openProfile: false,
-        openMenu: true,
+        openMenu: false,
     }),
     getters: {
         isOpenProfile: (state) => state.openProfile,

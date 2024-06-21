@@ -3,14 +3,14 @@
     <div class="w-full gap-x-[10px] flex flex-row justify-start items-start">
       <WidthrawIcon />
       <div class="w-full gap-y-[10px] flex flex-col justify-start items-start">
-        <div class="w-full flex flex-row justify-between items-center text-[#133C3E] font-medium text-[18px] leading-[27px]">
+        <div class="w-full flex flex-row justify-between items-center text-[#133C3E] font-medium text-[14px] leading-[22px] md:text-[18px] md:leading-[27px]">
           <span>{{ title }}</span>
           <div class="flex flex-row justify-start items-center gap-[4px]" >
             <span v-format-number>{{ amount }}</span>
             <span>تومان</span>
           </div>
         </div>
-        <div class="w-full flex flex-row justify-start items-center">
+        <div class="w-full flex flex-row justify-start items-center text-[10px] leading-[18px]">
           <span>{{ createdAt }}</span>
         </div>
       </div>

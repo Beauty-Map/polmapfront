@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#133C3E] w-full flex flex-col justify-start items-start">
     <div class="px-[100px] py-[66px] w-full flex flex-col justify-start items-start">
-      <div class="w-full flex flex-row justify-between items-center mb-[30px]">
+      <div class="w-full flex flex-row flex-wrap justify-between items-center mb-[30px]">
         <PolMapWhiteLogo />
         <div class="flex flex-row justify-end items-center gap-[10px]">
           <nuxt-link to="/">
@@ -15,7 +15,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="border-t border-t-white w-full py-[48px] flex flex-row justify-start items-start gap-[200px]">
+      <div class="border-t border-t-white w-full py-[48px] flex flex-row flex-wrap justify-start items-start gap-y-[40px] gap-x-[100px]">
         <div class="flex flex-col justify-start items-start gap-y-[12px]">
           <h3 class="text-white text-right font-semibold text-[22px] leading-[27px]">
             داشبورد

@@ -1,7 +1,8 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-start items-start">
-    <Header title="امور مالی"/>
-    <Main />
+  <div class="w-full flex flex-col justify-start items-start h-screen">
+    <Header class="hidden md:flex" title="امور مالی"/>
+    <Main class="hidden md:flex"/>
+    <MainMini class="md:hidden"/>
   </div>
 </template>
 
@@ -9,9 +10,10 @@
 import {definePageMeta} from "#imports";
 import Header from "~/components/financial/Header.vue";
 import Main from "~/components/financial/Main.vue";
+import MainMini from "~/components/financial/MainMini.vue";
 
 definePageMeta({
-  layout: "dashboard",
+  layout: "financial",
   middleware: "auth"
 })
 </script>

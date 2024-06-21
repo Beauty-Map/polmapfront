@@ -30,13 +30,13 @@
       <ErrorRedIcon />
       <span class="mr-1 text-[#F44336] text-[10px] leading-[12px]">{{errorText || props.error}}</span>
     </div>
-    <MapDrawer :is-open="showMapDrawer" @close="closeMapDrawer" @choose="onChooseLocation"/>
+<!--    <MapDrawer :is-open="showMapDrawer" @close="closeMapDrawer" @choose="onChooseLocation"/>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import ErrorRedIcon from "~/components/icons/ErrorRedIcon.vue";
-import MapDrawer from "~/components/drawer/MapDrawer.vue";
+// import MapDrawer from "~/components/drawer/MapDrawer.vue";
 
 const emits = defineEmits(['update:modelValue'])
 const props = defineProps({

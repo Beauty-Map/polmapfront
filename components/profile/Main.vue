@@ -6,9 +6,9 @@
           <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
           <TelInput :disabled="true" title="شماره موبایل" v-model="form.phone_number"/>
           <TextInput title="کد ملی" v-model="form.national_code"/>
-          <BirthDateInput title="تاریخ تولد" v-model="form.birth_date" class="mt-[27px]"/>
-          <TextInput title="جنسیت" v-model="form.gender"/>
-          <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id" class="mt-[27px]"/>
+          <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
+          <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
+          <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id"/>
           <TextInput title="آدرس محل سکونت" v-model="form.address"/>
           <TextInput title="کد پستی" v-model="form.postal_code"/>
           <TextInput title="تحصیلات" v-model="form.education"/>
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <button @click="doSave" class="mx-auto mt-[67px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
+    <button @click="doSave" class="mb-[80px] md:mb-0 mx-auto mt-[67px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
       ذخیره اطلاعات
     </button>
   </div>
@@ -41,6 +41,7 @@ import ChooseCityInput from "~/components/input/ChooseCityInput.vue";
 import UserAvatar from "~/components/profile/UserAvatar.vue";
 import AccountCard from "~/components/profile/AccountCard.vue";
 import ShebaInput from "~/components/input/ShebaInput.vue";
+import SelectInput from "~/components/input/SelectInput.vue";
 
 const user = useSanctumUser()
 
@@ -61,6 +62,17 @@ const form = ref({
   account_number: user.value?.account_number,
   bank_name: user.value?.bank_name,
 })
+
+const genderList = ref([
+  {
+    id: 'male',
+    title: 'مرد'
+  },
+  {
+    id: 'female',
+    title: 'زن'
+  }
+])
 
 const onUserAvatarChanged = (newAvatar: string) => {
   form.value.avatar = newAvatar

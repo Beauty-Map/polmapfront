@@ -5,6 +5,11 @@
         <DashboardIcon />
       </template>
     </SideBarLink>
+    <SideBarLink v-if="selectedApp" to="/app" :title="selectedApp.title">
+      <template #icon>
+        <ProfileIcon />
+      </template>
+    </SideBarLink>
     <SideBarLink to="/profile" title="پروفایل">
       <template #icon>
         <ProfileIcon />
@@ -48,6 +53,9 @@ import BannerIcon from "~/components/icons/SideBar/BannerIcon.vue";
 import StatisticIcon from "~/components/icons/SideBar/StatisticIcon.vue";
 import FinancialIcon from "~/components/icons/SideBar/FinancialIcon.vue";
 import ContactusIcon from "~/components/icons/SideBar/ContactusIcon.vue";
+import {useAppStore} from "~/store/App";
+
+const selectedApp = computed(() => useAppStore().getSelectedApp)
 </script>
 
 <style scoped>

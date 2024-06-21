@@ -8,7 +8,7 @@
         </div>
         <div class="font-medium text-[22px] text-white w-full leading-[34px] text-center mt-[10px]">موجودی</div>
       </div>
-      <div class="w-full flex overflow-y-auto flex-col justify-start items-start gap-y-[20px] bg-white rounded-[30px] py-[28px] px-[20px] min-h-[400px] max-h-[700px]">
+      <div class="w-full flex overflow-y-auto flex-col justify-start items-start gap-y-[20px] bg-white rounded-[30px] py-[28px] px-[20px] min-h-[400px] h-full">
         <WidthrawItem
           v-for="(w) in 10"
           :key="w"
@@ -23,11 +23,11 @@
       <div class="w-full text-center font-medium text-[26px] leading-[50px] text-black">{{user.full_name}}</div>
       <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
       <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
-      <MainActionButton class="mt-[18px]" @click="doLogin">
+      <MainActionButton class="mt-[18px]" @click="doWithdraw">
         <div class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
       </MainActionButton>
 
-      <div class="w-full flex flex-row justify-evenly items-center">
+      <div class="w-full flex flex-row flex-wrap justify-evenly items-center">
         <div class="flex flex-col justify-start items-center">
           <CircleProgressBar :value="420" :max="1000" colorUnfilled="#FF6832" size="160" rounded>
             <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">

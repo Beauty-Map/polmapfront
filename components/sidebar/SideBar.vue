@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-[310px]">
+  <div class="flex flex-col justify-start items-start w-full max-w-[310px]">
     <UserBox />
     <SideBarLinkBox />
   </div>

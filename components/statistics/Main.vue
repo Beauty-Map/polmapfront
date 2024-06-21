@@ -1,26 +1,25 @@
 <template>
   <div class="w-full flex flex-col justify-start items-center gap-y-[50]">
-
-    <div class="w-full mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[50px] py-[60px] px-[40px]">
-      <div class="w-full max-w-[820px] flex flex-row justify-between items-center border border-[#A9A7A7] rounded-[30px] py-[20px] px-[30px]">
-        <div class="flex flex-row justify-start items-center w-full max-w-[45%]">
+    <div class="w-full mt-[30px] md:mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[25px] md:rounded-[50px] py-[30px] md:py-[60px] px-[20px] md:px-[40px]">
+      <div class="w-full md:max-w-[820px] gap-y-[10px] flex flex-row flex-wrap justify-between items-center border border-[#A9A7A7] rounded-[15px] md:rounded-[30px] py-[15px] px-[15px] md:py-[20px] md:px-[30px]">
+        <div class="flex flex-row justify-start gap-x-[4px] items-center w-full md:max-w-[45%]">
           <span>سال:</span>
-          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[20px] outline-[#A9A7A7] px-[24px] py-[18px] min-w-[150px] max-w-[240px] w-full">
+          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
             <option v-for="(y,i) in years" :key="i" :selected="selectedYear == y" :value="y">{{ y }}</option>
           </select>
         </div>
-        <div class="flex flex-row justify-start items-center w-full max-w-[45%]">
+        <div class="flex flex-row justify-start gap-x-[4px] items-center w-full md:max-w-[45%]">
           <span>ماه:</span>
-          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[20px] outline-[#A9A7A7] px-[24px] py-[18px] min-w-[150px] max-w-[240px] w-full">
+          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
             <option v-for="(m,i) in months" :key="i" :selected="selectedMonth == m" :value="m.id">{{ m.name }}</option>
           </select>
         </div>
       </div>
       <div class="w-full max-w-[820px] flex flex-col justify-center items-center mt-[30px]">
-        <div class="w-full text-right font-normal text-[32px] leading-[37px] text-black">
+        <div class="w-full md:font-normal font-semibold text-center md:text-right text-[16px] leading-[24px] md:text-[32px] md:leading-[37px] text-black">
           تعداد کاربران دعوت شده:
         </div>
-        <div class="w-full flex flex-row gap-[10px] justify-center items-center mt-[30px]">
+        <div class="w-full flex flex-row gap-[10px] flex-wrap justify-center items-center mt-[30px]">
           <div class="flex flex-col justify-start gap-y-[10px] items-center">
             <CircleProgressBar :value="420" :max="2000" colorUnfilled="#09F9BF" size="160" rounded>
             <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
@@ -31,9 +30,8 @@
               <span>2000</span>
             </span>
             </CircleProgressBar>
-            <span class="text-[#141414] font-medium text-[32px] leading-[37px] mt-[10px]">کاربران عادی</span>
+            <span class="text-[#141414] font-medium text-[16px] leading-[24px] md:text-[32px] md:leading-[37px] mt-[10px]">کاربران عادی</span>
           </div>
-
           <div class="flex flex-col justify-start gap-y-[10px] items-center">
             <CircleProgressBar :value="300" :max="500" colorUnfilled="#03A9F1" size="160" rounded>
               <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
@@ -43,7 +41,7 @@
                 <span>300</span>
               </span>
             </CircleProgressBar>
-            <span class="text-[#141414] font-medium text-[32px] leading-[37px] mt-[10px]">هنرمند</span>
+            <span class="text-[#141414] font-medium text-[16px] leading-[24px] md:text-[32px] md:leading-[37px]">هنرمند</span>
           </div>
           <div class="flex flex-col justify-start gap-y-[10px] items-center">
             <CircleProgressBar :value="50" :max="100" colorUnfilled="#E42C64" size="160" rounded>
@@ -54,12 +52,12 @@
                 <span>300</span>
               </span>
             </CircleProgressBar>
-            <span class="text-[#141414] font-medium text-[32px] leading-[37px] mt-[10px]">بازاریاب</span>
+            <span class="text-[#141414] font-medium text-[16px] leading-[24px] md:text-[32px] md:leading-[37px]">بازاریاب</span>
           </div>
         </div>
       </div>
       <div class="w-full max-w-[820px] flex flex-col justify-center items-center mt-[50px]">
-        <div class="w-full text-right font-normal text-[32px] leading-[37px] text-black">
+        <div class="w-full text-center md:text-right font-semibold md:font-normal text-[16px] leading-[24px] md:text-[32px] md:leading-[37px] text-black">
           وضعیت کلی درآمد:
         </div>
         <div class="text-center">
@@ -67,13 +65,14 @@
         </div>
       </div>
     </div>
-    <div class="w-full mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[50px] py-[40px] px-[40px]">
+    <div class="w-full mb-[60px] md:mb-0 mt-[30px] md:mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[20px] md:rounded-[50px] py-[20px] px-[20px] md:py-[40px] md:px-[40px]">
       <div class="w-full flex flex-col justify-center items-center">
-        <div class="w-full text-right font-normal text-[32px] leading-[37px] text-black">
+        <div class="w-full text-center md:text-right font-semibold md:font-normal text-[16px] leading-[24px] md:text-[32px] md:leading-[37px] text-black">
           زیر مجموعه های برتر شما:
         </div>
-        <div class="w-full max-h-[450px] overflow-y-auto flex flex-col justify-start items-start mt-[40px] gap-y-[20px] gap-x-[10px]">
+        <div class="w-full max-h-[450px] overflow-y-auto flex flex-col justify-start items-start mt-[20px] md:mt-[40px] gap-y-[10px] gap-x-[5px] md:gap-y-[20px] md:gap-x-[10px]">
           <MarketerItem
+            @click="showUserActivities(m.id)"
             v-for="(m,i) in marketers"
             :key="i"
             :id="m.id"
@@ -158,6 +157,10 @@ onMounted(() => {
     selectedMonth.value = months.value[0]
   })
 })
+
+const showUserActivities = (id) => {
+
+}
 </script>
 
 <style scoped>
