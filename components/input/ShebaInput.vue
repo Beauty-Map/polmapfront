@@ -13,7 +13,7 @@
              v-model="value"
              :placeholder="placeholder"
       >
-      <span class="font-medium text-[22px] leading-[30px] text-black absolute left-[10px] top-[6px]">IR</span>
+      <span class="font-medium text-[16px] leading-[24px] md:text-[22px] md:leading-[30px] text-black absolute left-[10px] top-[8px] md:top-[6px]">IR</span>
     </div>
     <div class="w-full flex flex-row justify-start items-center" v-if="hasError">
       <ErrorRedIcon />
@@ -45,7 +45,11 @@ const errorText = ref<String>('')
 const hasError = ref<Boolean>(false)
 
 const validateTextNumber = ($event: Event) => {
-  emits('update:modelValue', $event.target?.value)
+  let v = $event.target?.value
+  if (v) {
+    value.value = v.replace(/[^0-9]/g, '')
+  }
+  emits('update:modelValue', value.value)
 }
 
 const validateTextDebounce = useDebounce(validateTextNumber, 500)

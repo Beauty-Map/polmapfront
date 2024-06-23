@@ -1,22 +1,8 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="w-full h-full flex flex-row flex-wrap">
-      <div class="w-full md:w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
-        <div class="w-full gap-[20px] py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
-          <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
-          <TelInput :disabled="true" title="شماره موبایل" v-model="form.phone_number"/>
-          <TextInput title="کد ملی" v-model="form.national_code"/>
-          <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
-          <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
-          <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id"/>
-          <TextInput title="آدرس محل سکونت" v-model="form.address"/>
-          <TextInput title="کد پستی" v-model="form.postal_code"/>
-          <TextInput title="تحصیلات" v-model="form.education"/>
-        </div>
-      </div>
-      <div class="w-full md:w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
-        <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
-          <UserAvatar @choose="onUserAvatarChanged" :avatar="user.avatar" class="mt-[35px] mb-[22px]"/>
+      <div class="w-full h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
+        <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full flex flex-col justify-start items-start">
           <AccountCard />
           <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
           <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
@@ -34,16 +20,12 @@
 
 <script setup lang="ts">
 
-import TextInput from "~/components/input/TextInput.vue";
-import TelInput from "~/components/input/TelInput.vue";
-import BirthDateInput from "~/components/input/BirthDateInput.vue";
-import ChooseCityInput from "~/components/input/ChooseCityInput.vue";
-import UserAvatar from "~/components/profile/UserAvatar.vue";
 import AccountCard from "~/components/profile/AccountCard.vue";
 import ShebaInput from "~/components/input/ShebaInput.vue";
-import SelectInput from "~/components/input/SelectInput.vue";
+import TextInput from "~/components/input/TextInput.vue";
 
 const user = useSanctumUser()
+const app = useNuxtApp()
 
 const form = ref({
   full_name: user.value?.full_name,
@@ -73,14 +55,6 @@ const genderList = ref([
     title: 'زن'
   }
 ])
-
-const onUserAvatarChanged = (newAvatar: string) => {
-  form.value.avatar = newAvatar
-}
-
-const doSave = () => {
-  console.log('doSave')
-}
 </script>
 
 <style scoped>

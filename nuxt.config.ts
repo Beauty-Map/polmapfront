@@ -16,8 +16,8 @@ export default defineNuxtConfig({
     'nuxt-auth-sanctum'
   ],
   sanctum: {
-    // baseUrl: 'https://api.polnmap.ir', // Laravel API
-    baseUrl: 'http://localhost:8000', // Laravel API
+    baseUrl: 'https://api.polmap.ir', // Laravel API
+    // baseUrl: 'http://localhost:8000', // Laravel API
     endpoints: {
       user: '/api/own',
       login: '/api/auth/login',
@@ -50,10 +50,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: 'http://localhost:8000/api',
-      uploadURL: 'http://localhost:8000/api/upload',
-      // baseURL: 'https://api.beautymap.ir/api',
-      // uploadURL: 'https://api.beautymap.ir/api/upload',
+      // baseURL: 'http://localhost:8000/api',
+      // uploadURL: 'http://localhost:8000/api/upload',
+      baseURL: 'https://api.polmap.ir/api',
+      uploadURL: 'https://api.polmap.ir/api/upload',
     }
   },
   devServer: {

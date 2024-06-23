@@ -55,6 +55,9 @@ const validateTextNumber = ($event: Event) => {
 
 const validateTextDebounce = useDebounce(validateTextNumber, 500)
 
+watch(() => props.modelValue, () => {
+  value.value = props.modelValue
+})
 </script>
 
 <style scoped>

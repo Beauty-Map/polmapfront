@@ -23,11 +23,11 @@
           </div>
           <span class="font-medium text-[14px] leading-[24px] md:text-[22px] md:leading-[34px] text-white text-center mt-[10px]">موجودی</span>
           <div class="w-full gap-x-[10px] md:gap-x-[30px] flex flex-row justify-center items-center mt-[10px]">
-            <nuxt-link to="/financial" class="text-center flex flex-col justify-start items-center">
+            <nuxt-link to="/financial/withdraw" class="text-center flex flex-col justify-start items-center">
               <WidthrawIcon />
               <span class="font-medium text-center text-[12px] leading-[18px] md:text-[18px] md:leading-[28px] text-white">برداشت موجودی</span>
             </nuxt-link>
-            <nuxt-link to="/wallet" class="text-center flex flex-col justify-start items-center">
+            <nuxt-link to="/financial/account" class="text-center flex flex-col justify-start items-center">
               <AccountDetailIcon />
               <span class="font-medium text-center text-[12px] leading-[18px] md:text-[18px] md:leading-[28px] text-white">اطلاعات بانکی</span>
             </nuxt-link>

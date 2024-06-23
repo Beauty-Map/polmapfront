@@ -1,25 +1,5 @@
 <template>
-  <div class="w-full mt-[60px] gap-[20px] h-full flex flex-row flex-wrap border border-[#A9A7A7] rounded-[50px] py-[60px] px-[40px]">
-    <div class="max-h-[1000px] w-[calc(50%-10px)] border border-[#A9A7A7] bg-[#2920D9] rounded-[30px] h-full flex flex-col justify-start items-start">
-      <div class="w-full rounded-t-[30px] py-[38px] px-[28px]">
-        <div class="text-center flex flex-row justify-center items-center gap-x-[4px] text-white font-semibold text-[36px] leading-[55px]">
-          <span v-format-number>{{ user.coins }}</span>
-          <span>تومان</span>
-        </div>
-        <div class="font-medium text-[22px] text-white w-full leading-[34px] text-center mt-[10px]">موجودی</div>
-      </div>
-      <div class="w-full flex overflow-y-auto flex-col justify-start items-start gap-y-[20px] bg-white rounded-[30px] py-[28px] px-[20px] min-h-[400px] h-full">
-        <WidthrawItem
-            v-for="(w, i) in requests"
-            :key="i"
-            :title="getTypeName(w.type)"
-            :amount="w.amount"
-            :created-at="w.created_at"
-        />
-        <InfiniteLoading :firstload="true" v-if="showInfiniteScroll" class="mx-auto" @infinite="paginateDebounce"/>
-      </div>
-    </div>
-    <div class="gap-y-[30px] w-[calc(50%-10px)] border border-[#A9A7A7] rounded-[30px] py-[60px] px-[40px] h-full flex flex-col justify-start items-center">
+  <div class="w-full mt-[60px] gap-[20px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[50px] py-[60px] px-[40px]">
       <img :src="user.avatar ? user.avatar : '/images/avatar.png'" class="rounded-full h-[110px] w-[110px] border border-[#B2550F]" alt="">
       <div class="w-full text-center font-medium text-[26px] leading-[50px] text-black">{{user.full_name}}</div>
       <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
@@ -52,84 +32,51 @@
           <div v-format-number>1000</div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 
-import WidthrawItem from "~/components/financial/WidthrawItem.vue";
 import WidthrawInput from "~/components/input/WidthrawInput.vue";
 import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import { CircleProgressBar } from 'circle-progress.vue';
 import {useCustomFetch} from "~/composables/useCustomFetch";
-import InfiniteLoading from "v3-infinite-loading";
 
 const user = useSanctumUser()
 const app = useNuxtApp()
+
 const form = ref({
-  amount: ''
+  amount: 1000
 })
-const showInfiniteScroll = ref<Boolean>(false)
-const lastPage = ref<number>(1)
-const page = ref<number>(1)
-const requests = ref<IPaymentRequest[]>([])
-
-const getTypeName = (type) => {
-  return type == 'withdraw' ? 'برداشت موجودی' : 'واریز موجودی'
-}
-const getOwnPaymentsRequests = async () => {
-  let url = `/own/payments/requests?page=${page.value}`
-  const res = await useCustomFetch(url, {
-    method: "get"
-  })
-  if (res.data.value) {
-    let list = (res.data.value.data as IPaymentRequest[])
-    if (list.length == 0) {
-      showInfiniteScroll.value = false
-      return
-    }
-    requests.value = [
-      ...requests.value,
-      ...list
-    ]
-    lastPage.value = (res.data.value.last_page as number)
-    setTimeout(() => {
-      showInfiniteScroll.value = true
-    }, 300)
-  }
-}
-const paginate = async () => {
-  if (page <= lastPage) {
-    page.value++
-    await getOwnPaymentsRequests()
-  }
-}
-const paginateDebounce = useDebounce(paginate, 500)
-
 const doWithdraw = async () => {
-  if (!form.value.amount || parseInt(form.value.amount) < 1000) {
+  if (!form.value.amount || form.value.amount < 1000) {
     app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
     return
   }
   const data = {
-    amount: parseInt(form.value.amount)
+    amount: form.value.amount
   }
   const res = await useCustomFetch('/own/payments/requests', {
     method: "POST",
     body: data,
   })
   if (res.error.value != null) {
-    app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
+    if (res.error.value.statusCode == 422) {
+      const errors = res.error.value.data.errors
+      const keys = Object.keys(res.error.value.data.errors)
+      for (let i = 0; i < keys.length; i++) {
+        app.$toast.error(errors[keys[i]][0], {rtl: true,})
+      }
+    } else {
+      app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
+    }
   }
   if (res.data.value != null) {
+    form.value.amount = 1000
     app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
-    form.value.amount = ''
   }
 }
-onMounted(() => {
-  nextTick(() => getOwnPaymentsRequests())
-})
+
 </script>
 
 <style scoped>

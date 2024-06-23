@@ -18,21 +18,58 @@
 
 <script setup lang="ts">
 
+const props = defineProps({
+  accountFullName: {
+    type: String,
+    default: ''
+  },
+  cardNumber: {
+    type: String,
+    default: ''
+  },
+  sheba: {
+    type: String,
+    default: ''
+  },
+  accountNumber: {
+    type: String,
+    default: ''
+  },
+  bankName: {
+    type: String,
+    default: ''
+  },
+})
+
 const getBankName = computed(() => {
-  return 'بانک ملی'
+  return props.bankName
 })
 
 const getSheba = computed(() => {
-  return 'IR75 132 2223222322234835267'
+  return props.sheba
 })
 
 const getUserFullName = computed(() => {
-  return 'زهرا زارعی'
+  return props.accountFullName
 })
 
 const getCardNumber = computed(() => {
-  return '5142 - 8164 - 6526 - 2563'
+  return insertHyphens(props.cardNumber)
 })
+
+const insertHyphens = (str) => {
+  if (!str) {
+    return ''
+  }
+  let result = '';
+  for (let i = 0; i < str.length; i += 4) {
+    if (i > 0) {
+      result += ' - ';
+    }
+    result += str.substring(i, i + 4);
+  }
+  return result;
+}
 </script>
 
 <style scoped>
