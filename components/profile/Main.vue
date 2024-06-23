@@ -17,7 +17,13 @@
       <div class="w-full md:w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
           <UserAvatar @choose="onUserAvatarChanged" :avatar="user.avatar" class="mt-[35px] mb-[22px]"/>
-          <AccountCard />
+          <AccountCard
+              :account-full-name="form.account_full_name"
+              :card-number="form.card_number"
+              :sheba="form.sheba"
+              :account-number="form.account_number"
+              :bank-name="form.bank_name"
+          />
           <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
           <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
           <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>

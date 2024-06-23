@@ -11,7 +11,13 @@
       <TextInput title="آدرس محل سکونت" v-model="form.address"/>
       <TextInput title="کد پستی" v-model="form.postal_code"/>
       <TextInput title="تحصیلات" v-model="form.education"/>
-      <AccountCard />
+      <AccountCard
+          :account-full-name="form.account_full_name"
+          :card-number="form.card_number"
+          :sheba="form.sheba"
+          :account-number="form.account_number"
+          :bank-name="form.bank_name"
+      />
       <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
       <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
       <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>

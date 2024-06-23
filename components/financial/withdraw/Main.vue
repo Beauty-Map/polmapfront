@@ -3,7 +3,13 @@
     <div class="w-full h-full flex flex-row flex-wrap">
       <div class="w-full h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full flex flex-col justify-start items-start">
-          <AccountCard />
+          <AccountCard
+              :account-full-name="form.account_full_name"
+              :card-number="form.card_number"
+              :sheba="form.sheba"
+              :account-number="form.account_number"
+              :bank-name="form.bank_name"
+          />
           <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
           <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
           <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>
