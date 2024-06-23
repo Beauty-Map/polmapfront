@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col justify-start items-start mb-[60px] md:mb-0">
-    <Header :title="selectedApp.title"/>
+    <Header :title="selectedApp.app_name"/>
     <DashboardMain />
   </div>
 </template>

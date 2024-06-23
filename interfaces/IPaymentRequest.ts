@@ -4,6 +4,7 @@ interface IPaymentRequest {
     user: Object
     amount: number
     status: string
-    type: string
+    status_fa: string
+    type_fa: string
     created_at: string
 }

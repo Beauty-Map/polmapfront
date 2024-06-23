@@ -10,7 +10,7 @@
       <template #icon>
         <ProfileIcon />
       </template>
-      <template #title>{{ selectedApp.title }}</template>
+      <template #title>{{ selectedApp.app_name }}</template>
     </MenuLink>
     <MenuLink class="relative" @click="openProfileDrawer" :is-link="false">
       <template #icon>
@@ -66,16 +66,16 @@ import FinancialIcon from "~/components/icons/SideBar/FinancialIcon.vue";
 import ContactusIcon from "~/components/icons/SideBar/ContactusIcon.vue";
 import ProfileIcon from "~/components/icons/SideBar/ProfileIcon.vue";
 import {useDrawerStore} from "~/store/Drawer";
-import SideBarLink from "~/components/sidebar/SideBarLink.vue";
 import {useAppStore} from "~/store/App";
 
 const store = useDrawerStore()
 const user = useSanctumUser()
 const selectedApp = computed(() => useAppStore().getSelectedApp)
+const router = useRouter()
 
 const openProfileDrawer = () => {
   router.push('/profile')
-  // store.openProfileDrawer()
+  store.closeAllDrawers()
 }
 </script>
 

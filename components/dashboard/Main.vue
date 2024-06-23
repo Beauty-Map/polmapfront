@@ -2,7 +2,7 @@
   <div class="w-full h-full border border-[#A9A7A7] rounded-[50px] mt-[30px] py-[6px] px-[10px] md:py-[16px] md:px-[40px] flex flex-col justify-start items-start">
     <div class="w-full flex flex-row justify-start items-start flex-wrap">
       <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px]">
-        <h1 class="text-right text-black font-normal text-[20px] leading-[25px] md:text-[30px] md:leading-[35px]">تعداد کاربران دعوت شده</h1>
+        <h1 class="text-center lg:text-right w-full text-black font-normal text-[20px] leading-[25px] md:text-[30px] md:leading-[35px]">تعداد کاربران دعوت شده</h1>
         <div class="w-full flex flex-row justify-center items-center flex-wrap">
           <CircleProgressBar :value="420" :max="1000" colorUnfilled="blue" size="160" rounded>
             <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px] mt-[20px]">
-        <h1 class="text-right text-black font-normal text-[20px] leading-[25px] md:text-[30px] md:leading-[35px]">موجودی کیف پول شما</h1>
+        <h1 class="text-center lg:text-right w-full text-black font-normal text-[20px] leading-[25px] md:text-[30px] md:leading-[35px]">موجودی کیف پول شما</h1>
         <div class="bg-[#2920D9] rounded-[30px] text-center flex flex-col justify-start items-center py-[10px] px-[20px] min-w-full md:py-[20px] md:px-[40px] md:min-w-[300px] min-h-[150px]">
           <div class="flex flex-row justify-start items-center gap-x-[4px] text-white font-semibold text-[26px] leading-[35px] md:text-[36px] md:leading-[55px]">
             <span v-format-number>{{ user.coins }}</span>

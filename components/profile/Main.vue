@@ -48,8 +48,13 @@ import UserAvatar from "~/components/profile/UserAvatar.vue";
 import AccountCard from "~/components/profile/AccountCard.vue";
 import ShebaInput from "~/components/input/ShebaInput.vue";
 import SelectInput from "~/components/input/SelectInput.vue";
+import {useCustomFetch} from "~/composables/useCustomFetch";
+import {useDrawerStore} from "~/store/Drawer";
 
 const user = useSanctumUser()
+const auth = useSanctumAuth()
+const app = useNuxtApp()
+const store = useDrawerStore()
 
 const form = ref({
   full_name: user.value?.full_name,
@@ -84,8 +89,36 @@ const onUserAvatarChanged = (newAvatar: string) => {
   form.value.avatar = newAvatar
 }
 
-const doSave = () => {
-  console.log('doSave')
+const doSave = async () => {
+  const data = {
+    full_name: form.value?.full_name,
+    national_code: form.value?.national_code,
+    birth_date: form.value?.birth_date,
+    gender: form.value?.gender,
+    address: form.value?.address,
+    city_id: form.value?.city_id,
+    postal_code: form.value?.postal_code,
+    education: form.value?.education,
+    avatar: form.value?.avatar,
+    account_full_name: form.value?.account_full_name,
+    card_number: form.value?.card_number ? form.value?.card_number.toString() : '',
+    sheba: form.value?.sheba,
+    account_number: form.value?.account_number,
+    bank_name: form.value?.bank_name,
+  }
+
+  const res = await useCustomFetch('/own', {
+    method: "PUT",
+    body: data,
+  })
+  if (res.error.value != null) {
+
+  }
+  if (res.data.value != null) {
+    await auth.refreshIdentity()
+    app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
+    store.closeAllDrawers()
+  }
 }
 </script>
 

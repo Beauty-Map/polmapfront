@@ -5,7 +5,7 @@
       <span class="font-normal text-[16px] leading-[18px] md:text-[26px] md:leading-[24px]">{{ getBankName }}</span>
     </div>
     <div class="text-left w-full">
-      <span class="font-normal text-[16px] leading-[16px] md:text-[22px] md:leading-[24px]">{{ getSheba }}</span>
+      <span class="w-full break-words font-normal text-[16px] leading-[16px] md:text-[22px] md:leading-[24px]" v-html="getSheba"></span>
     </div>
     <div class="text-right w-full">
       <span class="font-medium text-[16px] leading-[18px] md:text-[24px] md:leading-[24px]">{{ getUserFullName }}</span>
@@ -46,7 +46,7 @@ const getBankName = computed(() => {
 })
 
 const getSheba = computed(() => {
-  return props.sheba
+  return props.sheba.length > 0 ? '<span class="mr-[4px]">IR</span>' + props.sheba : ''
 })
 
 const getUserFullName = computed(() => {

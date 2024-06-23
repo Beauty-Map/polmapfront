@@ -8,7 +8,7 @@
     <div class="h-[40px] w-full rounded-[8px] relative border "
          :class="[hasError ? 'border-[#F44336]' : 'border-[#133C3E]']"
     >
-      <input type="text" class="absolute text-right ltr-dir left-[1px] right-[1px] top-[1px] bottom-[1px]  rounded-[8px] outline-none focus:outline-none pr-[20px] pl-[20px] placeholder:text-[#A9A7A7]"
+      <input type="text" class="absolute text-right ltr-dir left-[1px] right-[1px] top-[1px] bottom-[1px]  rounded-[8px] outline-none focus:outline-none pr-[20px] pl-[28px] placeholder:text-[#A9A7A7]"
              @input="validateTextDebounce"
              v-model="value"
              :placeholder="placeholder"
@@ -47,7 +47,7 @@ const hasError = ref<Boolean>(false)
 const validateTextNumber = ($event: Event) => {
   let v = $event.target?.value
   if (v) {
-    value.value = v.replace(/[^0-9]/g, '')
+    value.value = v.replace(/[^0-9]/g, '').toString()
   }
   emits('update:modelValue', value.value)
 }

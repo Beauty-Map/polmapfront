@@ -5,7 +5,7 @@
         <DashboardIcon />
       </template>
     </SideBarLink>
-    <SideBarLink v-if="selectedApp" to="/app" :title="selectedApp.title">
+    <SideBarLink v-if="selectedApp" to="/app" :title="selectedApp.app_name">
       <template #icon>
         <ProfileIcon />
       </template>

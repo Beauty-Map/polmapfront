@@ -27,7 +27,7 @@
       <WidthrawItem
           v-for="(w, i) in requests"
           :key="i"
-          :title="getTypeName(w.type)"
+          :title="w.type_fa"
           :amount="w.amount"
           :created-at="w.created_at"
       />

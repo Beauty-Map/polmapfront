@@ -1,82 +1,90 @@
 <template>
-  <div class="w-full mt-[60px] gap-[20px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[50px] py-[60px] px-[40px]">
-      <img :src="user.avatar ? user.avatar : '/images/avatar.png'" class="rounded-full h-[110px] w-[110px] border border-[#B2550F]" alt="">
-      <div class="w-full text-center font-medium text-[26px] leading-[50px] text-black">{{user.full_name}}</div>
-      <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
-      <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
-      <MainActionButton class="mt-[18px]" @click="doWithdraw">
-        <div class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
-      </MainActionButton>
-
-      <div class="w-full flex flex-row flex-wrap justify-evenly items-center">
-        <div class="flex flex-col justify-start items-center">
-          <CircleProgressBar :value="420" :max="1000" colorUnfilled="#FF6832" size="160" rounded>
-            <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
-              <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.2385 2.05566C14.8159 1.05566 16.2593 1.05566 16.8366 2.05566L29.5297 24.0407C30.1071 25.0407 29.3854 26.2907 28.2307 26.2907H2.84449C1.68979 26.2907 0.968099 25.0407 1.54545 24.0407L14.2385 2.05566Z" stroke="#141414"/>
-              </svg>
-              <span>برداشت های قبل</span>
-            </span>
-          </CircleProgressBar>
-          <div v-format-number>1000</div>
-        </div>
-        <div class="flex flex-col justify-start items-center">
-          <CircleProgressBar :value="420" :max="1000" colorUnfilled="#FFEA2E" size="160" rounded>
-            <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
-              <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M15.7076 1.8299C16.1566 0.447934 18.1117 0.447937 18.5607 1.8299L21.236 10.0636C21.5707 11.0937 22.5306 11.7911 23.6137 11.7911H32.2711C33.7242 11.7911 34.3283 13.6505 33.1528 14.5046L26.1488 19.5933C25.2726 20.2299 24.9059 21.3583 25.2406 22.3884L27.9159 30.6221C28.3649 32.004 26.7832 33.1532 25.6076 32.2991L18.6036 27.2104C17.7274 26.5738 16.5409 26.5738 15.6647 27.2104L8.66069 32.2991C7.48512 33.1532 5.9034 32.004 6.35242 30.6221L9.02771 22.3884C9.3624 21.3583 8.99575 20.2299 8.11954 19.5933L1.11553 14.5046C-0.0600381 13.6505 0.544127 11.7911 1.99721 11.7911H10.6546C11.7377 11.7911 12.6976 11.0937 13.0323 10.0636L15.7076 1.8299Z" stroke="#141414"/>
-              </svg>
-             <span>موجودی</span>
-            </span>
-          </CircleProgressBar>
-          <div v-format-number>1000</div>
+  <div class="w-full h-full flex flex-col">
+    <div class="w-full h-full flex flex-row flex-wrap">
+      <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
+        <div class="gap-y-[20px] w-full py-[16px] h-full flex flex-col justify-start items-start">
+          <AccountCard
+              :account-full-name="form.account_full_name"
+              :card-number="form.card_number"
+              :sheba="form.sheba"
+              :account-number="form.account_number"
+              :bank-name="form.bank_name"
+          />
+          <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
+          <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
+          <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>
+          <TextInput placeholder="شماره حساب خود را وارد کنید" v-model="form.account_number"/>
+          <TextInput placeholder="نام بانک خود را وارد کنید" v-model="form.bank_name"/>
         </div>
       </div>
+    </div>
+    <button @click="doSaveProfile" class="mb-[40px] md:mb-0 mx-auto mt-[27px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
+      ذخیره اطلاعات
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 
-import WidthrawInput from "~/components/input/WidthrawInput.vue";
-import MainActionButton from "~/components/button/form/MainActionButton.vue";
-import { CircleProgressBar } from 'circle-progress.vue';
+import AccountCard from "~/components/profile/AccountCard.vue";
+import ShebaInput from "~/components/input/ShebaInput.vue";
+import TextInput from "~/components/input/TextInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
+import {useDrawerStore} from "~/store/Drawer";
 
 const user = useSanctumUser()
 const app = useNuxtApp()
+const auth = useSanctumAuth()
+const store = useDrawerStore()
 
 const form = ref({
-  amount: 1000
+  full_name: user.value?.full_name,
+  phone_number: user.value?.phone_number,
+  national_code: user.value?.national_code,
+  birth_date: user.value?.birth_date,
+  gender: user.value?.gender,
+  address: user.value?.address,
+  city_id: user.value?.city_id,
+  postal_code: user.value?.postal_code,
+  education: user.value?.education,
+  avatar: user.value?.avatar,
+  account_full_name: user.value?.account_full_name,
+  card_number: user.value?.card_number,
+  sheba: user.value?.sheba,
+  account_number: user.value?.account_number,
+  bank_name: user.value?.bank_name,
 })
-const doWithdraw = async () => {
-  if (!form.value.amount || form.value.amount < 1000) {
-    app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
-    return
-  }
+const doSaveProfile = async () => {
   const data = {
-    amount: form.value.amount
+    full_name: form.value?.full_name,
+    national_code: form.value?.national_code,
+    birth_date: form.value?.birth_date,
+    gender: form.value?.gender,
+    address: form.value?.address,
+    city_id: form.value?.city_id,
+    postal_code: form.value?.postal_code,
+    education: form.value?.education,
+    avatar: form.value?.avatar,
+    account_full_name: form.value?.account_full_name,
+    card_number: form.value?.card_number ? form.value?.card_number.toString() : '',
+    sheba: form.value?.sheba,
+    account_number: form.value?.account_number,
+    bank_name: form.value?.bank_name,
   }
-  const res = await useCustomFetch('/own/payments/requests', {
-    method: "POST",
+  const res = await useCustomFetch('/own', {
+    method: "PUT",
     body: data,
   })
   if (res.error.value != null) {
-    if (res.error.value.statusCode == 422) {
-      const errors = res.error.value.data.errors
-      const keys = Object.keys(res.error.value.data.errors)
-      for (let i = 0; i < keys.length; i++) {
-        app.$toast.error(errors[keys[i]][0], {rtl: true,})
-      }
-    } else {
-      app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
-    }
+
   }
   if (res.data.value != null) {
-    form.value.amount = 1000
-    app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
+    await auth.refreshIdentity()
+    app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
+    store.closeAllDrawers()
   }
 }
-
+onMounted(()=>nextTick(()=>auth.refreshIdentity()))
 </script>
 
 <style scoped>
