@@ -3,7 +3,8 @@
     <UserAvatar @choose="onUserAvatarChanged" :avatar="user.avatar" class="mt-[35px] mb-[22px]"/>
     <div class="w-full overflow-y-auto flex flex-col gap-y-[27px]">
       <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
-      <TelInput title="شماره موبایل" v-model="form.phone_number" :disabled="true"/>
+      <EmailInput :disabled="true" title="ایمیل" v-model="form.email"/>
+      <TelInput title="شماره موبایل" v-model="form.phone_number"/>
       <NationalCodeInput title="کد ملی" v-model="form.national_code"/>
       <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
       <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
@@ -44,6 +45,7 @@ import {useDrawerStore} from "~/store/Drawer";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import ShebaInput from "~/components/input/ShebaInput.vue";
 import AccountCard from "~/components/profile/AccountCard.vue";
+import EmailInput from "~/components/input/EmailInput.vue";
 
 const store = useDrawerStore()
 const user = useSanctumUser()
@@ -52,6 +54,7 @@ const app = useNuxtApp()
 
 auth.refreshIdentity()
 const form = ref({
+  email: user.value?.email,
   full_name: user.value?.full_name,
   phone_number: user.value?.phone_number,
   national_code: user.value?.national_code,

@@ -51,6 +51,12 @@
       </template>
       <template #title>تماس با پشتیبانی</template>
     </MenuLink>
+    <MenuLink :isLink="false" @click="exit">
+      <template #icon>
+        <DashboardIcon />
+      </template>
+      <template #title>خروج</template>
+    </MenuLink>
   </div>
 </template>
 
@@ -72,10 +78,21 @@ const store = useDrawerStore()
 const user = useSanctumUser()
 const selectedApp = computed(() => useAppStore().getSelectedApp)
 const router = useRouter()
+const auth = useSanctumAuth()
 
 const openProfileDrawer = () => {
   router.push('/profile')
   store.closeAllDrawers()
+}
+const exit = () => {
+  auth.logout()
+      .then(res => {
+        store.closeAllDrawers()
+        router.replace('/')
+      })
+      .catch(err => {
+        console.log(err, "err")
+      })
 }
 </script>
 

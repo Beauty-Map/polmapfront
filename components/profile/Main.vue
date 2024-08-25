@@ -4,7 +4,8 @@
       <div class="w-full md:w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
         <div class="w-full gap-[20px] py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
           <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
-          <TelInput :disabled="true" title="شماره موبایل" v-model="form.phone_number"/>
+          <EmailInput :disabled="true" title="ایمیل" v-model="form.email"/>
+          <TelInput title="شماره موبایل" v-model="form.phone_number"/>
           <TextInput title="کد ملی" v-model="form.national_code"/>
           <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
           <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
@@ -50,6 +51,7 @@ import ShebaInput from "~/components/input/ShebaInput.vue";
 import SelectInput from "~/components/input/SelectInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import {useDrawerStore} from "~/store/Drawer";
+import EmailInput from "~/components/input/EmailInput.vue";
 
 const user = useSanctumUser()
 const auth = useSanctumAuth()
@@ -57,6 +59,7 @@ const app = useNuxtApp()
 const store = useDrawerStore()
 
 const form = ref({
+  email: user.value?.email,
   full_name: user.value?.full_name,
   phone_number: user.value?.phone_number,
   national_code: user.value?.national_code,
