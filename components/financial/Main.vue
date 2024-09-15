@@ -64,8 +64,11 @@ import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import { CircleProgressBar } from 'circle-progress.vue';
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import InfiniteLoading from "v3-infinite-loading";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const app = useNuxtApp()
 const form = ref({
   amount: ''

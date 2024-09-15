@@ -1,7 +1,5 @@
 export default defineNuxtRouteMiddleware((to, from) => {
     const referralId = to.query.ref as string;
-    console.log(referralId, "refff")
-
     if (referralId) {
         const ref = useCookie('referralId', {
             maxAge: 60 * 60 * 24 * 30, // 7 days

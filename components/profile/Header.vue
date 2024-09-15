@@ -16,13 +16,16 @@
 <script setup lang="ts">
 
 import MinusCircleRedIcon from "~/components/icons/MinusCircleRedIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 const props = defineProps({
   title: {
     type: String,
     required: true
   }
 })
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 </script>
 
 <style scoped>

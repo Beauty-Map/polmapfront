@@ -52,9 +52,10 @@ import SelectInput from "~/components/input/SelectInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import {useDrawerStore} from "~/store/Drawer";
 import EmailInput from "~/components/input/EmailInput.vue";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
-const auth = useSanctumAuth()
+const auth = useAuthStore()
+const user = ref(auth.user)
 const app = useNuxtApp()
 const store = useDrawerStore()
 
@@ -118,7 +119,6 @@ const doSave = async () => {
 
   }
   if (res.data.value != null) {
-    await auth.refreshIdentity()
     app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
     store.closeAllDrawers()
   }

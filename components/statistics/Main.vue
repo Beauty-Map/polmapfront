@@ -77,6 +77,7 @@
             :key="i"
             :id="m.id"
             :avatar="m.avatar"
+            :email="m.email"
             :earn-amount="m.own_earn_amount"
             :full-name="m.full_name"
           />
@@ -89,45 +90,17 @@
 <script setup lang="ts">
 import { CircleProgressBar } from 'circle-progress.vue';
 import MarketerItem from "~/components/statistics/MarketerItem.vue";
+import {useAuthStore} from "~/store/Auth";
 
 const app = useNuxtApp()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const years = ref<number[]>([])
 const months = ref<IMonth[]>([])
 const selectedYear = ref(1403)
 const selectedMonth = ref<IMonth>()
-const marketers = ref([
-  {
-    id: 1,
-    full_name: 'سعید حیدری',
-    avatar: '/images/avatar.png',
-    own_earn_amount: 100000,
-  },
-  {
-    id: 1,
-    full_name: 'سعید حیدری',
-    avatar: '/images/avatar.png',
-    own_earn_amount: 100000,
-  },
-  {
-    id: 1,
-    full_name: 'سعید حیدری',
-    avatar: '/images/avatar.png',
-    own_earn_amount: 100000,
-  },
-  {
-    id: 1,
-    full_name: 'سعید حیدری',
-    avatar: '/images/avatar.png',
-    own_earn_amount: 100000,
-  },
-  {
-    id: 1,
-    full_name: 'سعید حیدری',
-    avatar: '/images/avatar.png',
-    own_earn_amount: 100000,
-  }
-])
+const marketers = ref([])
 
 onMounted(() => {
   nextTick(() => {
@@ -161,6 +134,18 @@ onMounted(() => {
 const showUserActivities = (id) => {
 
 }
+
+const getReferrals = () => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  getRequest('/own/referrals')
+      .then(res => {
+        marketers.value = res.data
+      })
+}
+
+onMounted(() => {
+  nextTick(() => getReferrals())
+})
 </script>
 
 <style scoped>

@@ -31,10 +31,12 @@ import ShebaInput from "~/components/input/ShebaInput.vue";
 import TextInput from "~/components/input/TextInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import {useDrawerStore} from "~/store/Drawer";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const app = useNuxtApp()
-const auth = useSanctumAuth()
 const store = useDrawerStore()
 
 const form = ref({
@@ -79,12 +81,10 @@ const doSaveProfile = async () => {
 
   }
   if (res.data.value != null) {
-    await auth.refreshIdentity()
     app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
     store.closeAllDrawers()
   }
 }
-onMounted(()=>nextTick(()=>auth.refreshIdentity()))
 </script>
 
 <style scoped>

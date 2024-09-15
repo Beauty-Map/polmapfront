@@ -12,7 +12,7 @@
              @change="validateTextDebounce"
              v-model="value"
       >
-        <option :selected="item.id == value" v-for="(item,i) in items" :value="item" :key="i">{{ item.title }}</option>
+        <option :selected="item.id == value" v-for="(item,i) in items" :value="item.id" :key="i">{{ item.title }}</option>
       </select>
     </div>
     <div class="w-full flex flex-row justify-start items-center" v-if="hasError">

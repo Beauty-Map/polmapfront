@@ -91,21 +91,33 @@ const resend = async (code: string) => {
 }
 
 const doRegister = async () => {
+  const ref = useCookie('referralId', {
+    maxAge: 60 * 60 * 24 * 30, // 7 days
+    path: '/',
+    sameSite: 'lax',
+  });
   const data = {
     email: form.value.email,
     password: form.value.password,
+    referral_code: ref.value?.toString(),
   }
-  const res = await useCustomFetch('/auth/register', {
-    method: "POST",
-    body: data
-  })
-  if (res.error.value != null) {
-    app.$toast.error('این ایمیل پیشتر ثبت نام کرده است', {rtl: true})
-  }
-  if (res.data.value != null) {
-    app.$toast.success('کد ورود با موفقیت ارسال شد', {rtl: true})
-    openDrawerClicked()
-  }
+
+  const {$postRequest: postRequest}=app
+  postRequest('/auth/register', data)
+      .then(res => {
+        app.$toast.success('کد ورود با موفقیت ارسال شد', {rtl: true})
+        const email = useCookie('email')
+        email.value = form.value.email
+        openDrawerClicked()
+      })
+      .catch(err => {
+        const errors = Object.values(err.data.errors)
+        for (const k in errors) {
+          for (const e in errors[k]) {
+            app.$toast.error(errors[k][e], {rtl: true,})
+          }
+        }
+      })
 }
 
 const openLoginModal = () => {

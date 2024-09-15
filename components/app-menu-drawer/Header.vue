@@ -36,8 +36,10 @@
 import AddMoneyIcon from "~/components/icons/AddMoneyIcon.vue";
 import {useDrawerStore} from "~/store/Drawer";
 import BackIcon from "~/components/icons/BackIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
 
 const getBanner = computed(() => '/images/panel/header.png')
 const getAvatar = computed(() => user.avatar ? user.avatar : '/images/avatar.png')

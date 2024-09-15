@@ -43,13 +43,13 @@ import NationalCodeInput from "~/components/input/NationalCodeInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import SelectInput from "~/components/input/SelectInput.vue";
 import EmailInput from "~/components/input/EmailInput.vue";
+import {useAuthStore} from "~/store/Auth";
 
 const store = useDrawerStore()
-const user = useSanctumUser()
-const auth = useSanctumAuth()
+const auth = useAuthStore()
+const user = ref(auth.user)
 const app = useNuxtApp()
 
-auth.refreshIdentity()
 const form = ref({
   email: user.value?.email,
   full_name: user.value?.full_name,
@@ -100,7 +100,6 @@ const doSaveProfile = async () => {
 
   }
   if (res.data.value != null) {
-    await auth.refreshIdentity()
     app.$toast.success('اطلاعات شما با موفقیت ثبت شد', {rtl: true})
     store.closeAllDrawers()
     // store.openA()

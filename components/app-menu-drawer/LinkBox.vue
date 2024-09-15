@@ -33,6 +33,12 @@
       </template>
       <template #title>دریافت بنر تبلیغاتی</template>
     </MenuLink>
+    <MenuLink :to="'/referral'">
+      <template #icon>
+        <BannerIcon />
+      </template>
+      <template #title>دریافت لینک معرفی</template>
+    </MenuLink>
     <MenuLink :to="'/statistics'">
       <template #icon>
         <StatisticIcon />
@@ -73,26 +79,26 @@ import ContactusIcon from "~/components/icons/SideBar/ContactusIcon.vue";
 import ProfileIcon from "~/components/icons/SideBar/ProfileIcon.vue";
 import {useDrawerStore} from "~/store/Drawer";
 import {useAppStore} from "~/store/App";
+import {useAuthStore} from "~/store/Auth";
+import SideBarLink from "~/components/sidebar/SideBarLink.vue";
 
 const store = useDrawerStore()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
 const selectedApp = computed(() => useAppStore().getSelectedApp)
 const router = useRouter()
-const auth = useSanctumAuth()
 
 const openProfileDrawer = () => {
   router.push('/profile')
   store.closeAllDrawers()
 }
 const exit = () => {
-  auth.logout()
-      .then(res => {
-        store.closeAllDrawers()
-        router.replace('/')
-      })
-      .catch(err => {
-        console.log(err, "err")
-      })
+  const cookie = useCookie('token')
+  cookie.value = ''
+  auth.setUser(null)
+  auth.setToken('')
+  store.closeAllDrawers()
+  router.replace('/')
 }
 </script>
 

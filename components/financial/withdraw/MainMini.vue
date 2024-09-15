@@ -41,8 +41,11 @@ import WidthrawInput from "~/components/input/WidthrawInput.vue";
 import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import { CircleProgressBar } from 'circle-progress.vue';
 import {useCustomFetch} from "~/composables/useCustomFetch";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const app = useNuxtApp()
 
 const form = ref({

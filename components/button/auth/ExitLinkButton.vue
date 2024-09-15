@@ -6,16 +6,19 @@
 
 <script setup lang="ts">
 
-const auth = useSanctumAuth()
+import {useDrawerStore} from "~/store/Drawer";
+import {useAuthStore} from "~/store/Auth";
+
+const store = useDrawerStore()
+const auth = useAuthStore()
 const router = useRouter()
 const doExit = () => {
-  auth.logout()
-      .then(res => {
-        router.replace('/')
-      })
-      .catch(err => {
-        console.log(err, "err")
-      })
+  const cookie = useCookie('token')
+  cookie.value = ''
+  auth.setUser(null)
+  auth.setToken('')
+  store.closeAllDrawers()
+  router.replace('/')
 }
 </script>
 

@@ -23,6 +23,7 @@
 
 import MinusCircleRedIcon from "~/components/icons/MinusCircleRedIcon.vue";
 import BackWhiteIcon from "~/components/icons/BackWhiteIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 const props = defineProps({
   title: {
     type: String,
@@ -30,7 +31,9 @@ const props = defineProps({
   }
 })
 const router = useRouter()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const goBack = () => {
   router.back()
 }

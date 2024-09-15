@@ -42,8 +42,11 @@ import FinancialWhiteIcon from "~/components/icons/FinancialWhiteIcon.vue";
 import CardWhiteIcon from "~/components/icons/CardWhiteIcon.vue";
 import WidthrawItem from "~/components/financial/WidthrawItem.vue";
 import InfiniteLoading from "v3-infinite-loading";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const showInfiniteScroll = ref<Boolean>(false)
 const lastPage = ref<number>(1)
 const page = ref<number>(1)

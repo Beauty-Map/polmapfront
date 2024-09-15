@@ -59,11 +59,14 @@ import BottomNavigationButton from "~/components/button/BottomNavigationButton.v
 import {useDrawerStore} from "~/store/Drawer";
 import StatisticWhiteIcon from "~/components/icons/SideBar/StatisticWhiteIcon.vue";
 import FinancialWhiteIcon from "~/components/icons/SideBar/FinancialWhiteIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 
 const router = useRouter()
 const route = useRoute()
 const store = useDrawerStore()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const index = ref<Number>(1)
 
 const selectItem = (i: Number) => {

@@ -19,10 +19,11 @@ import PolicyAndRulesButton from "~/components/icons/AuthDrawer/PolicyAndRulesBu
 import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import BottomText from "~/components/icons/AuthDrawer/BottomText.vue";
 import EmailInput from "~/components/input/EmailInput.vue";
+import {useAuthStore} from "~/store/Auth";
 
 const app = useNuxtApp()
 const router = useRouter()
-const auth = useSanctumAuth()
+const auth = useAuthStore()
 
 const form = ref({
   email: '',
@@ -31,14 +32,26 @@ const form = ref({
 })
 
 const doLogin = async () => {
-  auth.login(form.value)
-      .then(() => {
+  const {$postRequest: postRequest}=app
+  postRequest('/auth/login', form.value)
+      .then((res) => {
+        auth.user = res.data
+        auth.token = res.data.token
+        const token = useCookie("token", {
+          maxAge: 60 * 60 * 24 * 31
+        })
+        token.value = res.data.token
         app.$toast.success('شما با موفقیت وارد شدید', {rtl: true,})
-        router.replace('/dashboard')
+        router.push('/dashboard')
       })
-      .catch(err => {
-        app.$toast.error('متاسفانه خطایی رخ داده است. دوباره امتحان کنید', {rtl: true,})
-        console.log(err, "err")
+      .catch((err) => {
+        const errors = Object.values(err.data.errors)
+        for (const k in errors) {
+          for (const e in errors[k]) {
+            app.$toast.error(errors[k][e], {rtl: true,})
+          }
+        }
+
       })
 }
 

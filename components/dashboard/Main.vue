@@ -57,8 +57,11 @@
 import WidthrawIcon from "~/components/icons/WidthrawIcon.vue";
 import AccountDetailIcon from "~/components/icons/AccountDetailIcon.vue";
 import { CircleProgressBar } from 'circle-progress.vue';
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 </script>
 
 <style scoped>

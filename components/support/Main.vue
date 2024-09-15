@@ -30,10 +30,13 @@
 import TicketItem from "~/components/support/TicketItem.vue";
 import AddTicketIcon from "~/components/icons/AddTicketIcon.vue";
 import TicketListIcon from "~/components/icons/TicketListIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 
 const app = useNuxtApp()
 const router = useRouter()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 
 const tickets = ref<ITicket[]>([])
 const page = ref(1)

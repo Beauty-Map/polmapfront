@@ -36,9 +36,12 @@ import TicketTitleInput from "~/components/input/TicketTitleInput.vue";
 import TicketChooseFile from "~/components/input/TicketChooseFile.vue";
 import AddTicketIcon from "~/components/icons/AddTicketIcon.vue";
 import TicketListIcon from "~/components/icons/TicketListIcon.vue";
+import {useAuthStore} from "~/store/Auth";
 const app = useNuxtApp()
 const router = useRouter()
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const form = ref<ITicketForm>({
   subject: null,
   title: '',

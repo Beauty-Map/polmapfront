@@ -1,16 +1,16 @@
 import {ofetch} from "ofetch";
 import {useAuthStore} from "~/store/Auth.js";
 
-export default defineNuxtPlugin(async(nuxtApp) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
     if (process.server) {
         const token = useCookie('token')
 
         if (token.value) {
             const auth = useAuthStore()
-            await ofetch('/own',
-                {
-                    baseURL: 'http://127.0.0.1:8000/api',
-                    // baseURL: 'https://api.beautymap.ir/api',
+            try {
+                const res = await ofetch('/own', {
+                    baseURL: 'https://api.polmap.ir/api',
+                    // baseURL: 'http://127.0.0.1:8001/api',
                     method: "GET",
                     parseResponse: JSON.parse,
                     headers: {
@@ -19,22 +19,19 @@ export default defineNuxtPlugin(async(nuxtApp) => {
                         "Authorization": `Bearer ${token.value ?? ''}`
                     }
                 })
-                .then(res => {
-                    auth.user = res?.data
-                    auth.token = token.value?.toString() ?? ''
-                })
-                .catch(err => {
-                    auth.user = null
-                    auth.token = null
-                    token.value = ''
-                })
-            // auth.user = res.data
-            // auth.token = token.value?.toString() ?? ''
+
+                auth.user = res
+                auth.token = token.value?.toString()
+
+                // به جای ایجاد مجدد کوکی، همان کوکی token را تغییر ده
+                token.value = token.value?.toString()
+            } catch (err) {
+                console.log("auth error", err)
+                auth.user = null
+                auth.token = null
+                token.value = ''
+            }
         }
     }
-    return {
-        provide: {
-            injected: () => 'my injected function'
-        }
-    }
+    return {}
 })

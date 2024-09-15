@@ -29,8 +29,11 @@
 import AccountCard from "~/components/profile/AccountCard.vue";
 import ShebaInput from "~/components/input/ShebaInput.vue";
 import TextInput from "~/components/input/TextInput.vue";
+import {useAuthStore} from "~/store/Auth";
 
-const user = useSanctumUser()
+const auth = useAuthStore()
+const user = ref(auth.user)
+
 const app = useNuxtApp()
 
 const form = ref({
