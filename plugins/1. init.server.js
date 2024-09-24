@@ -9,8 +9,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
             const auth = useAuthStore()
             try {
                 const res = await ofetch('/own', {
-                    baseURL: 'https://api.polmap.ir/api',
-                    // baseURL: 'http://127.0.0.1:8001/api',
+                    // baseURL: 'https://api.polmap.ir/api',
+                    baseURL: 'http://127.0.0.1:8000/api',
                     method: "GET",
                     parseResponse: JSON.parse,
                     headers: {
@@ -19,8 +19,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
                         "Authorization": `Bearer ${token.value ?? ''}`
                     }
                 })
-
-                auth.user = res
+                auth.user = res.data
                 auth.token = token.value?.toString()
 
                 // به جای ایجاد مجدد کوکی، همان کوکی token را تغییر ده

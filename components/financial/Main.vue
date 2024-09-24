@@ -24,8 +24,11 @@
       <div class="w-full text-center font-medium text-[26px] leading-[50px] text-black">{{user.full_name}}</div>
       <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
       <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
-      <MainActionButton class="mt-[18px]" @click="doWithdraw">
-        <div class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
+      <MainActionButton :disabled="loading" class="mt-[18px]" @click="doWithdraw">
+        <div v-if="loading">
+          <LoadingComponent />
+        </div>
+        <div v-else class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
       </MainActionButton>
 
       <div class="w-full flex flex-row flex-wrap justify-evenly items-center">
@@ -65,9 +68,11 @@ import { CircleProgressBar } from 'circle-progress.vue';
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import InfiniteLoading from "v3-infinite-loading";
 import {useAuthStore} from "~/store/Auth";
+import LoadingComponent from "~/components/global/Loading.vue";
 
 const auth = useAuthStore()
 const user = ref(auth.user)
+const loading = ref(false)
 
 const app = useNuxtApp()
 const form = ref({
@@ -111,8 +116,11 @@ const paginate = async () => {
 const paginateDebounce = useDebounce(paginate, 500)
 
 const doWithdraw = async () => {
+  if (loading.value) return
+  loading.value = true
   if (!form.value.amount || parseInt(form.value.amount) < 1000) {
     app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
+    loading.value = false
     return
   }
   const data = {
@@ -124,10 +132,12 @@ const doWithdraw = async () => {
   })
   if (res.error.value != null) {
     app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
+    loading.value = false
   }
   if (res.data.value != null) {
     app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
     form.value.amount = ''
+    loading.value = false
   }
 }
 onMounted(() => {

@@ -3,8 +3,11 @@
     <EmailInput title="ایمیل" v-model="form.email"/>
     <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
     <PolicyAndRulesButton class="mt-[24px]" v-model="form.accept_policy"/>
-    <MainActionButton class="mt-[24px]" @click="doRegister">
-      <div class="text-white text-center text-[20px] leading-[30px]">ارسال کد تایید</div>
+    <MainActionButton :disabled="loading" class="mt-[24px]" @click="doRegister">
+      <div v-if="loading">
+        <LoadingComponent />
+      </div>
+      <div v-else class="text-white text-center text-[20px] leading-[30px]">ارسال کد تایید</div>
     </MainActionButton>
     <BottomText class="mt-[18px]" @click="openLoginModal" title="ورود"/>
     <OtpDrawer :is-open="openDrawer"
@@ -25,11 +28,13 @@ import {useDrawerStore} from "~/store/Drawer";
 import EmailInput from "~/components/input/EmailInput.vue";
 import PasswordInput from "~/components/input/PasswordInput.vue";
 import OtpDrawer from "~/components/drawer/OtpDrawer.vue";
+import LoadingComponent from "~/components/global/Loading.vue";
 
 const store = useDrawerStore()
 const router = useRouter()
 const app = useNuxtApp()
 const openDrawer = ref(false)
+const loading = ref(false)
 
 const form = ref({
   email: '',
@@ -91,6 +96,8 @@ const resend = async (code: string) => {
 }
 
 const doRegister = async () => {
+  if (loading.value) return
+  loading.value = true
   const ref = useCookie('referralId', {
     maxAge: 60 * 60 * 24 * 30, // 7 days
     path: '/',
@@ -117,6 +124,9 @@ const doRegister = async () => {
             app.$toast.error(errors[k][e], {rtl: true,})
           }
         }
+      })
+      .finally(() => {
+        loading.value = false
       })
 }
 

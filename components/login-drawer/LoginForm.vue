@@ -3,9 +3,11 @@
     <EmailInput title="ایمیل" v-model="form.email"/>
     <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
     <ResetPasswordLink class="mt-[18]"/>
-    <PolicyAndRulesButton class="mt-[18px]" v-model="form.accept_policy"/>
-    <MainActionButton class="mt-[24px]" @click="doLogin">
-      <div class="text-white text-center text-[20px] leading-[30px]">ورود</div>
+    <MainActionButton :disabled="loading" class="mt-[24px]" @click="doLogin">
+      <div v-if="loading">
+        <LoadingComponent />
+      </div>
+      <div v-else class="text-white text-center text-[20px] leading-[30px]">ورود</div>
     </MainActionButton>
     <BottomText class="mt-[18px]" @click="openRegisterModal" title="ثبت نام"/>
   </div>
@@ -15,23 +17,27 @@
 
 import PasswordInput from "~/components/input/PasswordInput.vue";
 import ResetPasswordLink from "~/components/icons/AuthDrawer/ResetPasswordLink.vue";
-import PolicyAndRulesButton from "~/components/icons/AuthDrawer/PolicyAndRulesButton.vue";
 import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import BottomText from "~/components/icons/AuthDrawer/BottomText.vue";
 import EmailInput from "~/components/input/EmailInput.vue";
+import LoadingComponent from "~/components/global/Loading.vue";
 import {useAuthStore} from "~/store/Auth";
 
 const app = useNuxtApp()
 const router = useRouter()
 const auth = useAuthStore()
+const loading = ref(false)
 
 const form = ref({
   email: '',
   password: '',
-  accept_policy: false,
 })
 
 const doLogin = async () => {
+  if (loading.value) {
+    return
+  }
+  loading.value = true
   const {$postRequest: postRequest}=app
   postRequest('/auth/login', form.value)
       .then((res) => {
@@ -52,6 +58,9 @@ const doLogin = async () => {
           }
         }
 
+      })
+      .finally(() => {
+        loading.value = false
       })
 }
 

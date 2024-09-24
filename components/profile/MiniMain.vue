@@ -2,12 +2,12 @@
   <div class="flex flex-col justify-start items-start">
     <UserAvatar @choose="onUserAvatarChanged" :avatar="user.avatar" class="mt-[35px] mb-[22px]"/>
     <div class="w-full overflow-y-auto flex flex-col gap-y-[27px]">
-      <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
-      <EmailInput :disabled="true" title="ایمیل" v-model="form.email"/>
-      <TelInput title="شماره موبایل" v-model="form.phone_number"/>
+      <TextInput title="نام و نام خانوادگی *" v-model="form.full_name"/>
+      <EmailInput title="ایمیل *" v-model="form.email" :disabled="true"/>
+      <TelInput title="شماره موبایل *" v-model="form.phone_number"/>
       <NationalCodeInput title="کد ملی" v-model="form.national_code"/>
       <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
-      <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
+<!--      <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>-->
 <!--      <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id"/>-->
 <!--      <TextInput title="آدرس محل سکونت" v-model="form.address"/>-->
 <!--      <TextInput title="کد پستی" v-model="form.postal_code"/>-->
@@ -24,8 +24,11 @@
 <!--      <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>-->
 <!--      <TextInput placeholder="شماره حساب خود را وارد کنید" v-model="form.account_number"/>-->
 <!--      <TextInput placeholder="نام بانک خود را وارد کنید" v-model="form.bank_name"/>-->
-      <MainActionButton class="mt-[30px]" @click="doSaveProfile">
-        <div class="text-white text-center text-[20px] leading-[30px]">ذخیره اطلاعات</div>
+      <MainActionButton :disabled="loading" class="mt-[30px]" @click="doSaveProfile">
+        <div v-if="loading">
+          <LoadingComponent />
+        </div>
+        <div v-else class="text-white text-center text-[20px] leading-[30px]">ذخیره اطلاعات</div>
       </MainActionButton>
     </div>
   </div>
@@ -47,11 +50,13 @@ import ShebaInput from "~/components/input/ShebaInput.vue";
 import AccountCard from "~/components/profile/AccountCard.vue";
 import EmailInput from "~/components/input/EmailInput.vue";
 import {useAuthStore} from "~/store/Auth";
+import LoadingComponent from "~/components/global/Loading.vue";
 
 const store = useDrawerStore()
 const auth = useAuthStore()
 const user = ref(auth.user)
 const app = useNuxtApp()
+const loading = ref(false)
 
 const form = ref({
   email: user.value?.email,
@@ -75,6 +80,8 @@ const onUserAvatarChanged = (newAvatar: string) => {
   form.value.avatar = newAvatar
 }
 const doSaveProfile = async () => {
+  if (loading.value) return
+  loading.value = true
   const data = {
     full_name: form.value?.full_name,
     national_code: form.value?.national_code,
@@ -96,10 +103,17 @@ const doSaveProfile = async () => {
       .then(() => {
         app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
         store.closeAllDrawers()
+        auth.own()
       })
       .catch(err => {
-
+        const errors = Object.values(err.data.errors)
+        for (const k in errors) {
+          for (const e in errors[k]) {
+            app.$toast.error(errors[k][e], {rtl: true,})
+          }
+        }
       })
+      .finally(() => loading.value = false)
 }
 const genderList = ref([
   {

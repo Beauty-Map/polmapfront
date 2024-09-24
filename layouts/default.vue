@@ -1,5 +1,7 @@
 <template>
   <div class="page h-full w-full flex flex-col relative" :class="isMobile ? 'px-[25px]' : ''">
+    <ResetPasswordDrawer />
+    <SetPasswordDrawer />
     <PageLoading v-if="loading"/>
     <slot />
   </div>
@@ -9,6 +11,8 @@
 
 import PageLoading from "~/components/loading/PageLoading.vue";
 import MainHeader from "~/components/header/MainHeader.vue";
+import ResetPasswordDrawer from "~/components/drawer/ResetPasswordDrawer.vue";
+import SetPasswordDrawer from "~/components/drawer/SetPasswordDrawer.vue";
 const nuxt = useNuxtApp()
 const device = useDevice()
 const loading = ref<boolean>(true)

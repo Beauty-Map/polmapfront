@@ -4,8 +4,11 @@
     <div class="w-full text-center font-medium text-[20px] leading-[30px] text-black">{{user.full_name}}</div>
     <div class="w-full text-center font-light text-[16px] leading-[24px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
     <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
-    <MainActionButton class="mt-[18px]" @click="doWithdraw">
-      <div class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
+    <MainActionButton :disabled="loading" class="mt-[18px]" @click="doWithdraw">
+      <div v-if="loading">
+        <LoadingComponent />
+      </div>
+      <div v-else class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
     </MainActionButton>
 
     <div class="w-full flex flex-row flex-wrap justify-evenly items-center">
@@ -42,9 +45,11 @@ import MainActionButton from "~/components/button/form/MainActionButton.vue";
 import { CircleProgressBar } from 'circle-progress.vue';
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import {useAuthStore} from "~/store/Auth";
+import LoadingComponent from "~/components/global/Loading.vue";
 
 const auth = useAuthStore()
 const user = ref(auth.user)
+const loading = ref(false)
 
 const app = useNuxtApp()
 
@@ -52,8 +57,11 @@ const form = ref({
   amount: 1000
 })
 const doWithdraw = async () => {
+  if (loading.value) return
+  loading.value = true
   if (!form.value.amount || form.value.amount < 1000) {
     app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
+    loading.value = false
     return
   }
   const data = {
@@ -73,10 +81,12 @@ const doWithdraw = async () => {
     } else {
       app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
     }
+    loading.value = false
   }
   if (res.data.value != null) {
     form.value.amount = 1000
     app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
+    loading.value = false
   }
 }
 
