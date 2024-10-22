@@ -52,10 +52,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // baseURL: process.env.BASE_URL,
-      // baseURL: 'http://localhost:8000/api',
-      // uploadURL: 'http://localhost:8000/api/upload',
-      baseURL: 'https://api.beautymap.ir/api',
-      uploadURL: 'https://api.beautymap.ir/api/upload',
+      baseURL: 'http://localhost:8000/api',
+      uploadURL: 'http://localhost:8000/api/upload',
+      // baseURL: 'https://api.beautymap.ir/api',
+      // uploadURL: 'https://api.beautymap.ir/api/upload',
     }
   },
   devServer: {

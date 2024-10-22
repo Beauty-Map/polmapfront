@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-start items-start">
+  <div class="w-full h-full flex flex-col justify-start items-start mb-8">
     <Header title="آموزش"/>
     <Main />
   </div>

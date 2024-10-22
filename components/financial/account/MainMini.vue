@@ -3,41 +3,41 @@
     <div class="w-full h-full flex flex-row flex-wrap">
       <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] h-full flex flex-col justify-start items-start">
-          <AccountCard
-              :account-full-name="form.account_full_name"
-              :card-number="form.card_number"
-              :sheba="form.sheba"
-              :account-number="form.account_number"
-              :bank-name="form.bank_name"
-          />
-          <TextInput placeholder="نام و نام خانوادگی دارنده حساب را وارد کنید" v-model="form.account_full_name"/>
-          <TextInput placeholder="شماره کارت خود را وارد کنید" v-model="form.card_number"/>
-          <ShebaInput placeholder="شماره شبا خود را وارد کنید" v-model="form.sheba"/>
-          <TextInput placeholder="شماره حساب خود را وارد کنید" v-model="form.account_number"/>
-          <TextInput placeholder="نام بانک خود را وارد کنید" v-model="form.bank_name"/>
+          <TextInput placeholder="نام و نام خانوادگی را وارد کنید" v-model="form.account_full_name"/>
+          <MainActionButton :disabled="loading" class="mt-[30px]" @click="doAddWallet">
+            <div v-if="loading">
+              <LoadingComponent />
+            </div>
+            <div v-else class="text-white text-center text-[20px] leading-[30px]">اتصال کیف پول</div>
+          </MainActionButton>
         </div>
       </div>
     </div>
-    <button @click="doSaveProfile" class="mb-[40px] md:mb-0 mx-auto mt-[27px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
-      ذخیره اطلاعات
+    <button :disabled="loadingUpdate" @click="doSaveProfile" class="mb-[40px] md:mb-0 mx-auto mt-[60px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
+      <span v-if="loadingUpdate">
+        <LoadingComponent />
+      </span>
+      <span v-else>ذخیره اطلاعات</span>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
 
-import AccountCard from "~/components/profile/AccountCard.vue";
-import ShebaInput from "~/components/input/ShebaInput.vue";
 import TextInput from "~/components/input/TextInput.vue";
 import {useCustomFetch} from "~/composables/useCustomFetch";
 import {useDrawerStore} from "~/store/Drawer";
 import {useAuthStore} from "~/store/Auth";
+import MainActionButton from "~/components/button/form/MainActionButton.vue";
+import LoadingComponent from "~/components/global/Loading.vue";
 
 const auth = useAuthStore()
 const user = ref(auth.user)
 
 const app = useNuxtApp()
 const store = useDrawerStore()
+const loading = ref(false)
+const loadingUpdate = ref(false)
 
 const form = ref({
   full_name: user.value?.full_name,
@@ -55,8 +55,11 @@ const form = ref({
   sheba: user.value?.sheba,
   account_number: user.value?.account_number,
   bank_name: user.value?.bank_name,
+  wallet_address: user.value?.wallet_address,
 })
 const doSaveProfile = async () => {
+  if (loadingUpdate.value) return
+  loadingUpdate.value = true
   const data = {
     full_name: form.value?.full_name,
     national_code: form.value?.national_code,
@@ -84,6 +87,13 @@ const doSaveProfile = async () => {
     app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
     store.closeAllDrawers()
   }
+  loadingUpdate.value = false
+}
+
+const doAddWallet = () => {
+  if (loading.value) return
+  loading.value = true
+
 }
 </script>
 
