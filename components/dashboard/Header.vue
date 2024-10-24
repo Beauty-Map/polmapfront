@@ -33,7 +33,6 @@ const props = defineProps({
 const router = useRouter()
 const auth = useAuthStore()
 const user = ref(auth.user)
-
 const goBack = () => {
   router.back()
 }

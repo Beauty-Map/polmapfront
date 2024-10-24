@@ -3,7 +3,7 @@
     <div class="w-full flex flex-col justify-start items-center">
       <div class="w-full text-center flex flex-col justify-start items-center">
         <div class="text-center flex flex-row justify-center items-center gap-x-[4px] text-white font-semibold text-[28px] leading-[42px]">
-          <span v-format-number>{{ user.coins }}</span>
+          <span v-format-number>{{ user.income }}</span>
           <span>تومان</span>
         </div>
         <div class="font-medium text-[16px] text-white w-full leading-[26px] text-center mt-[10px]">موجودی</div>
@@ -23,7 +23,7 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="w-full h-full pb-[60px] py-[18px] px-[12px] gap-y-[10px] overflow-y-auto bg-white mt-[10px] rounded-t-[25px] flex-grow">
+    <div class="w-full h-[calc(100vh/2)] pb-[60px] py-[18px] px-[12px] gap-y-[10px] overflow-y-auto bg-white mt-[10px] rounded-t-[25px] flex-grow">
       <WidthrawItem
           v-for="(w, i) in requests"
           :key="i"
