@@ -40,7 +40,7 @@ const copyLink = async (app) => {
     const text = `${app.app_link}?ref=${user?.value?.referral_code}`
     await navigator.clipboard.writeText(text)
     await navigator.share({
-      text: text
+      url: text
     });
   } catch (error) {
   }

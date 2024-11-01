@@ -8,7 +8,7 @@
       <div>درآمد شما:</div>
      <div class="flex flex-row gap-x-2">
        <div v-format-number>{{ earnAmount }}</div>
-       <span>تومان</span>
+       <span>TON</span>
      </div>
     </div>
   </div>

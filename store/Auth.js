@@ -16,12 +16,12 @@ export const useAuthStore = defineStore('auth', {
         },
         async own() {
             const token = useCookie('token')
+            const runtimeConfig = useRuntimeConfig()
 
             if (token.value) {
                 await ofetch('/own',
                     {
-                        // baseURL: 'http://127.0.0.1:8000/api',
-                        baseURL: 'https://api.beautymap.ir/api',
+                        baseURL: runtimeConfig.public.baseURL,
                         method: "GET",
                         parseResponse: JSON.parse,
                         headers: {

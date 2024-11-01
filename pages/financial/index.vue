@@ -1,8 +1,8 @@
 <template>
   <div class="w-full flex flex-col justify-start items-start min-h-screen">
     <Header class="hidden md:flex" title="امور مالی"/>
-    <Main class="hidden md:flex"/>
-    <MainMini class="md:hidden"/>
+<!--    <Main class="hidden md:flex"/>-->
+    <MainMini/>
   </div>
 </template>
 

@@ -2,11 +2,12 @@
   <div class="relative w-full h-[200px]">
     <img :src="getBanner" alt="" class="w-full h-full"/>
     <div class="absolute top-[20px] left-0 right-0 flex flex-row justify-between items-center">
-      <div @click="goToWalletPage" class="cursor-pointer px-[8px] h-[37px] ml-[17px] flex flex-row justify-between items-center border border-[#A9A7A7] rounded-[20px] bg-white">
-        <AddMoneyIcon />
-        <span class="font-medium text-[18px] leading-[28px] mx-[8px]" v-format-number>{{ user.coins }}</span>
-        <span class="font-medium text-[18px] leading-[28px]">تومان</span>
-      </div>
+<!--      <div @click="goToWalletPage" class="cursor-pointer px-[8px] h-[37px] ml-[17px] flex flex-row justify-between items-center border border-[#A9A7A7] rounded-[20px] bg-white">-->
+<!--        <AddMoneyIcon />-->
+<!--        <span class="font-medium text-[18px] leading-[28px] mx-[8px]" v-format-number>{{ user.coins }}</span>-->
+<!--        <span class="font-medium text-[18px] leading-[28px]">TON</span>-->
+<!--      </div>-->
+      <div></div>
       <BackIcon class="cursor-pointer" @click="goBack"/>
     </div>
     <div class="absolute bottom-[12px] left-[35px] right-[35px] px-[9px] py-[9px]
@@ -49,7 +50,8 @@ const router = useRouter()
 const store = useDrawerStore()
 
 const goBack = () => {
-  store.closeMenuDrawer()
+  // store.closeMenuDrawer()
+  router.back()
 }
 const openProfileDrawer = () => {
   router.push('/profile')

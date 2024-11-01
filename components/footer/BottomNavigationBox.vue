@@ -16,34 +16,34 @@
       >
         <CategoryIcon />
         <template #text>
-          منو
+          آموزش
         </template>
       </BottomNavigationButton>
       <BottomNavigationButton
           @click="selectItem(3)"
           :selected="index == 3"
       >
-        <StatisticWhiteIcon />
+        <FinancialWhiteIcon />
         <template #text>
-          گزارشات
+          کسب درآمد
         </template>
       </BottomNavigationButton>
       <BottomNavigationButton
           @click="selectItem(4)"
           :selected="index == 4"
       >
-        <FinancialWhiteIcon />
+        <WithdrawIcon />
         <template #text>
-          امور مالی
+          برداشت
         </template>
       </BottomNavigationButton>
       <BottomNavigationButton
           @click="selectItem(5)"
           :selected="index == 5"
       >
-        <ProfileIcon />
+        <StatisticWhiteIcon />
         <template #text>
-          پروفایل
+          گزارشات
         </template>
       </BottomNavigationButton>
     </div>
@@ -60,6 +60,7 @@ import {useDrawerStore} from "~/store/Drawer";
 import StatisticWhiteIcon from "~/components/icons/SideBar/StatisticWhiteIcon.vue";
 import FinancialWhiteIcon from "~/components/icons/SideBar/FinancialWhiteIcon.vue";
 import {useAuthStore} from "~/store/Auth";
+import WithdrawIcon from "~/components/icons/SideBar/WithdrawIcon.vue";
 
 const router = useRouter()
 const route = useRoute()
@@ -74,34 +75,35 @@ const selectItem = (i: Number) => {
   index.value = i
   switch (i) {
     case 1:
-      openMainPage()
-      break
-
-    case 2:
       openMenuPage()
       break
 
-    case 3:
-      openStatisticsPage()
+    case 2:
+      openCoursePage()
       break
 
-    case 4:
+    case 3:
       openFinancialPage()
       break
 
+    case 4:
+      openWithdrawPage()
+      break
+
     case 5:
-      openProfilePage()
+      openStatisticsPage()
       break
 
   }
 }
 
-const openMainPage = () => {
-  router.push('/dashboard')
+const openCoursePage = () => {
+  router.push('/learn')
 }
 
 const openMenuPage = () => {
-  store.openMenuDrawer()
+  router.push('/dashboard')
+  // store.openMenuDrawer()
 }
 
 const openStatisticsPage = () => {
@@ -109,6 +111,10 @@ const openStatisticsPage = () => {
 }
 
 const openFinancialPage = () => {
+  router.push('/earn')
+}
+
+const openWithdrawPage = () => {
   router.push('/financial')
 }
 
@@ -118,15 +124,15 @@ const openProfilePage = () => {
 }
 
 const onRouteChanged = (route: string) => {
-  if (store.isOpenMenu) {
-    index.value = 2
-  } else if (route == '/') {
+  if (route == '/dashboard') {
     index.value = 1
-  } else if (route.startsWith('/statistics')) {
+  } else if (route == '/learn') {
+    index.value = 2
+  } else if (route=='/financial') {
     index.value = 3
   } else if (route.startsWith('/financial')) {
     index.value = 4
-  } else if (route.startsWith('/profile')) {
+  } else if (route.startsWith('/statistics')) {
     index.value = 5
   }
 }

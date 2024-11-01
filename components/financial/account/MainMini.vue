@@ -3,7 +3,7 @@
     <div class="w-full h-full flex flex-row flex-wrap">
       <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] h-full flex flex-col justify-start items-start">
-          <TextInput placeholder="نام و نام خانوادگی را وارد کنید" v-model="form.account_full_name"/>
+<!--          <TextInput placeholder="نام و نام خانوادگی را وارد کنید" v-model="form.account_full_name"/>-->
           <MainActionButton :disabled="loading" class="mt-[30px]" @click="doAddWallet">
             <div v-if="loading">
               <LoadingComponent />

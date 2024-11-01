@@ -7,7 +7,7 @@
           <span>{{ title }}</span>
           <div class="flex flex-row justify-start items-center gap-[4px]" >
             <span v-format-number>{{ amount }}</span>
-            <span>تومان</span>
+            <span>TON</span>
           </div>
         </div>
         <div class="w-full flex flex-row justify-start items-center text-[10px] leading-[18px]">

@@ -20,11 +20,11 @@
         <div class="bg-[#2920D9] rounded-[30px] text-center flex flex-col justify-start items-center py-[10px] px-[20px] min-w-full md:py-[20px] md:px-[40px] md:min-w-[300px] min-h-[150px]">
           <div class="flex flex-row justify-start items-center gap-x-[4px] text-white font-semibold text-[26px] leading-[35px] md:text-[36px] md:leading-[55px]">
             <span v-format-number>{{ user.income }}</span>
-            <span>تومان</span>
+            <span>TON</span>
           </div>
           <span class="font-medium text-[14px] leading-[24px] md:text-[22px] md:leading-[34px] text-white text-center mt-[10px]">موجودی</span>
           <div class="w-full gap-x-[10px] md:gap-x-[30px] flex flex-row justify-center items-center mt-[10px]">
-            <nuxt-link to="/financial/withdraw" class="text-center flex flex-col justify-start items-center">
+            <nuxt-link to="/financial" class="text-center flex flex-col justify-start items-center">
               <WidthrawIcon />
               <span class="font-medium text-center text-[12px] leading-[18px] md:text-[18px] md:leading-[28px] text-white">برداشت موجودی</span>
             </nuxt-link>
@@ -41,7 +41,7 @@
         <h1 class="text-right text-black font-medium text-[20px] md:text-[30px] leading-[35px]">آموزش درآمد بیشتر</h1>
         <div class="font-medium text-[14px] leading-[28px] mt-[18px] md:text-[16px] text-justify md:mt-[38px]">
           <p>
-            همین الان که این مطلب را می‌نویسم، بیش از 10 شخص را سراغ دارم، که توانسته‌اند در خانه خودشان، به درآمدهای میلیونی، در یک هفته یا حتی یک روز برسند. یک نمونه آن، طراح لباسی است که با کار در منزل، الان ماهانه بیش از 50 سفارش دارد. یا صاحب فروشگاه آنلاینی است، که در خواب، روزانه چندین میلیون به حسابش می‌آید. چند سال پیش، اگر در مورد راه‌های کسب درآمد در خانه می‌شنیدیم، عمدتا کارهایی مثل قالی بافی، آشپزی و ساخت صنایع دستی، آن هم بیشتر توسط خانم‌های خانه دار، در ذهنمان می‌آمد. اما الان وضع بسیار فرق کرده. الان دیگر کسب درآمد در منزل، زن و مرد نمی‌شناسد. بیزنسمن‌هایی را می‌شناسم، که در همان اتاق شخصی منزل خود توانسته‌اند، به درآمد بسیار بالایی برسند. منظورم از درآمد بالا، چیزی بیش از ماهانه 50 یا 60 میلیون تومان است. آن هم با کمترین سرمایه...
+            همین الان که این مطلب را می‌نویسم، بیش از 10 شخص را سراغ دارم، که توانسته‌اند در خانه خودشان، به درآمدهای میلیونی، در یک هفته یا حتی یک روز برسند. یک نمونه آن، طراح لباسی است که با کار در منزل، الان ماهانه بیش از 50 سفارش دارد. یا صاحب فروشگاه آنلاینی است، که در خواب، روزانه چندین میلیون به حسابش می‌آید. چند سال پیش، اگر در مورد راه‌های کسب درآمد در خانه می‌شنیدیم، عمدتا کارهایی مثل قالی بافی، آشپزی و ساخت صنایع دستی، آن هم بیشتر توسط خانم‌های خانه دار، در ذهنمان می‌آمد. اما الان وضع بسیار فرق کرده. الان دیگر کسب درآمد در منزل، زن و مرد نمی‌شناسد. بیزنسمن‌هایی را می‌شناسم، که در همان اتاق شخصی منزل خود توانسته‌اند، به درآمد بسیار بالایی برسند. منظورم از درآمد بالا، چیزی بیش از ماهانه 50 یا 60 میلیون TON است. آن هم با کمترین سرمایه...
           </p>
         </div>
       </div>

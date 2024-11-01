@@ -2,7 +2,7 @@
   <div class="w-ful gap-[20px] h-full flex flex-col justify-start items-center pt-[20px] pb-[40px]">
     <img :src="user.avatar ? user.avatar : '/images/avatar.png'" class="rounded-full h-[110px] w-[110px] border border-[#B2550F]" alt="">
     <div class="w-full text-center font-medium text-[20px] leading-[30px] text-black">{{user.full_name}}</div>
-    <div class="w-full text-center font-light text-[16px] leading-[24px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
+<!--    <div class="w-full text-center font-light text-[16px] leading-[24px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>-->
     <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
     <MainActionButton :disabled="loading" class="mt-[18px]" @click="doWithdraw">
       <div v-if="loading">
@@ -60,34 +60,32 @@ const doWithdraw = async () => {
   if (loading.value) return
   loading.value = true
   if (!form.value.amount || form.value.amount < 1000) {
-    app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
+    app.$toast.error('حداقل مبلغ برداشت 1000 TON می باشد', {rtl: true,})
     loading.value = false
     return
   }
   const data = {
     amount: form.value.amount
   }
-  const res = await useCustomFetch('/own/payments/requests', {
-    method: "POST",
-    body: data,
-  })
-  if (res.error.value != null) {
-    if (res.error.value.statusCode == 422) {
-      const errors = res.error.value.data.errors
-      const keys = Object.keys(res.error.value.data.errors)
-      for (let i = 0; i < keys.length; i++) {
-        app.$toast.error(errors[keys[i]][0], {rtl: true,})
-      }
-    } else {
-      app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
-    }
-    loading.value = false
-  }
-  if (res.data.value != null) {
-    form.value.amount = 1000
-    app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
-    loading.value = false
-  }
+  const {$postRequest: postRequest}=app
+  postRequest('/own/payments/requests', data)
+      .then(res => {
+        form.value.amount = 1000
+        app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
+        loading.value = false
+      })
+      .catch(err => {
+        if (err.statusCode == 422) {
+          const errors = err.data.errors
+          const keys = Object.keys(err.data.errors)
+          for (let i = 0; i < keys.length; i++) {
+            app.$toast.error(errors[keys[i]][0], {rtl: true,})
+          }
+        } else {
+          app.$toast.error('متاسفانه خطایی رخ داده است لطفا بعدا امتحان کنید', {rtl: true,})
+        }
+        loading.value = false
+      })
 }
 
 </script>

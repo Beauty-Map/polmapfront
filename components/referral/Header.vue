@@ -4,7 +4,7 @@
       <MinusCircleRedIcon />
       <div class="text-[22px] text-right leading-[30px] text-[#133C3E] w-full flex flex-row justify-start items-center gap-[4px] min-w-[150px]" >
         <span v-format-number>{{ user.coins }}</span>
-        <span>تومان</span>
+        <span>TON</span>
       </div>
     </div>
     <div class="text-black text-center font-medium text-[40px] leading-[61px]">

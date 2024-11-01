@@ -4,7 +4,7 @@
       <div class="w-full rounded-t-[30px] py-[38px] px-[28px]">
         <div class="text-center flex flex-row justify-center items-center gap-x-[4px] text-white font-semibold text-[36px] leading-[55px]">
           <span v-format-number>{{ user.coins }}</span>
-          <span>تومان</span>
+          <span>TON</span>
         </div>
         <div class="font-medium text-[22px] text-white w-full leading-[34px] text-center mt-[10px]">موجودی</div>
       </div>
@@ -22,7 +22,7 @@
     <div class="gap-y-[30px] w-[calc(50%-10px)] border border-[#A9A7A7] rounded-[30px] py-[60px] px-[40px] h-full flex flex-col justify-start items-center">
       <img :src="user.avatar ? user.avatar : '/images/avatar.png'" class="rounded-full h-[110px] w-[110px] border border-[#B2550F]" alt="">
       <div class="w-full text-center font-medium text-[26px] leading-[50px] text-black">{{user.full_name}}</div>
-      <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>
+<!--      <div class="w-full text-center font-light text-[22px] leading-[44px] text-[#828282]">IR - 43 0560 6118 2800 5585 3086 01</div>-->
       <WidthrawInput placeholder="مبلغ برداشت" v-model="form.amount"/>
       <MainActionButton :disabled="loading" class="mt-[18px]" @click="doWithdraw">
         <div v-if="loading">
@@ -119,7 +119,7 @@ const doWithdraw = async () => {
   if (loading.value) return
   loading.value = true
   if (!form.value.amount || parseInt(form.value.amount) < 1000) {
-    app.$toast.error('حداقل مبلغ برداشت 1000 تومان می باشد', {rtl: true,})
+    app.$toast.error('حداقل مبلغ برداشت 1000 TON می باشد', {rtl: true,})
     loading.value = false
     return
   }

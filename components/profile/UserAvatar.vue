@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div class="bottom-0 absolute rounded-[20px] border border-[#133C3E] bg-white px-[20px] py-[6px] text-[#141414] font-normal text-[14px] leading-[19px] text-center mt-[5px]">تغییر پروفایل</div>
+    <div class="bottom-0 absolute rounded-[20px] border border-[#133C3E] bg-white px-[20px] py-[6px] text-[#141414] font-normal text-[14px] leading-[19px] text-center mt-[5px]">تغییر عکس پروفایل</div>
     <input @change="onChooseImage" accept="image/png, image/jpeg" type="file" hidden ref="image" />
   </div>
 </template>

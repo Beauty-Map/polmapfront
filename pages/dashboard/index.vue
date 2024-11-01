@@ -1,16 +1,10 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-start items-start">
-    <div class="w-full h-full flex flex-col justify-start items-center gap-y-[40px]">
-      <h2 class="font-medium text-[20px] leading-[30px] text-center mt-[40px]">محصول خود را انتخاب کنید</h2>
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[20px]">
-        <MainActionButton
-            v-for="(app, i) in appList"
-            :key="i"
-            bg-color="#FF3CA0"
-            @click="openAppMenuDrawer(app)">
-          <div class="text-white text-center text-[20px] leading-[30px]">{{ app.app_name }}</div>
-        </MainActionButton>
-      </div>
+  <div
+      class="flex flex-col overflow-y-scroll w-full duration-700 ease-in-out bg-white z-[999]"
+  >
+    <div class="flex flex-col justify-start items-center gap-y-[20px]">
+      <AppMenuDrawerHeader />
+      <AppMenuDrawerLinkBox />
     </div>
   </div>
 </template>

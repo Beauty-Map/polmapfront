@@ -1,17 +1,5 @@
 <template>
   <div class="flex flex-col justify-start items-start w-full pb-10">
-    <MenuLink :to="'/dashboard'">
-      <template #icon>
-        <DashboardIcon />
-      </template>
-      <template #title>داشبورد</template>
-    </MenuLink>
-    <MenuLink v-if="selectedApp" to="/app">
-      <template #icon>
-        <ProfileIcon />
-      </template>
-      <template #title>{{ selectedApp.app_name }}</template>
-    </MenuLink>
     <MenuLink class="relative" @click="openProfileDrawer" :is-link="false">
       <template #icon>
         <ProfileIcon />
@@ -21,35 +9,23 @@
         <DangerIcon @click="openProfileDrawer"/>
       </template>
     </MenuLink>
+    <MenuLink :to="'/plan'">
+      <template #icon>
+        <IconsDollarGrayIcon />
+      </template>
+      <template #title>پرداخت حق عضویت</template>
+    </MenuLink>
+    <MenuLink :to="'/medias'">
+      <template #icon>
+        <BannerIcon />
+      </template>
+      <template #title>شبکه های اجتماعی</template>
+    </MenuLink>
     <MenuLink :to="'/learn'">
       <template #icon>
         <CourseIcon />
       </template>
       <template #title>آموزش</template>
-    </MenuLink>
-    <MenuLink :to="'/banner'">
-      <template #icon>
-        <BannerIcon />
-      </template>
-      <template #title>دریافت بنر تبلیغاتی</template>
-    </MenuLink>
-    <MenuLink :to="'/referral'">
-      <template #icon>
-        <BannerIcon />
-      </template>
-      <template #title>دریافت لینک معرفی</template>
-    </MenuLink>
-    <MenuLink :to="'/statistics'">
-      <template #icon>
-        <StatisticIcon />
-      </template>
-      <template #title>آمار و گزارشات</template>
-    </MenuLink>
-    <MenuLink :to="'/financial'">
-      <template #icon>
-        <FinancialIcon />
-      </template>
-      <template #title>مالی</template>
     </MenuLink>
     <MenuLink to="/support">
       <template #icon>

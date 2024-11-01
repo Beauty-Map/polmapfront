@@ -10,18 +10,49 @@
           قبلی
         </button>
       </li>
-      <li v-for="page in totalPages" :key="page">
+      <li v-if="totalPages > 2 && currentPage !== 1">
         <button
-            @click="goToPage(page)"
-            :class="{
-            'bg-blue-500 text-white': page === currentPage,
-            'bg-gray-200': page !== currentPage,
-          }"
-            class="px-3 py-2 rounded"
+            @click="goToPage(1)"
+            class="bg-gray-200 px-3 py-2 rounded"
         >
-          {{ page }}
+          1
         </button>
       </li>
+      <li>
+        <button
+            @click="goToPage(currentPage)"
+            class="bg-blue-500 text-white px-3 py-2 rounded"
+        >
+          {{ currentPage }}
+        </button>
+      </li>
+      <li v-if="totalPages > 2  && currentPage == 1">
+        <button
+            class="bg-gray-200 px-3 py-2 rounded"
+        >
+          ...
+        </button>
+      </li>
+      <li v-if="totalPages > 2  && currentPage != totalPages">
+        <button
+            @click="goToPage(totalPages)"
+            class="bg-gray-200 px-3 py-2 rounded"
+        >
+          {{ totalPages }}
+        </button>
+      </li>
+<!--      <li v-for="page in totalPages" :key="page">-->
+<!--        <button-->
+<!--            @click="goToPage(page)"-->
+<!--            :class="{-->
+<!--            'bg-blue-500 text-white': page === currentPage,-->
+<!--            'bg-gray-200': page !== currentPage,-->
+<!--          }"-->
+<!--            class="px-3 py-2 rounded"-->
+<!--        >-->
+<!--          {{ page }}-->
+<!--        </button>-->
+<!--      </li>-->
       <li>
         <button
             @click="goToPage(currentPage + 1)"

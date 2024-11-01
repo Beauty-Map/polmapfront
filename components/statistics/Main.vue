@@ -4,14 +4,14 @@
       <div class="w-full md:max-w-[820px] gap-y-[10px] flex flex-row flex-wrap justify-between items-center border border-[#A9A7A7] rounded-[15px] md:rounded-[30px] py-[15px] px-[15px] md:py-[20px] md:px-[30px]">
         <div class="flex flex-row justify-start gap-x-[4px] items-center w-full md:max-w-[45%]">
           <span>سال:</span>
-          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
+          <select v-model="selectedYear" @change="changeYear" class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
             <option v-for="(y,i) in years" :key="i" :selected="selectedYear == y" :value="y">{{ y }}</option>
           </select>
         </div>
         <div class="flex flex-row justify-start gap-x-[4px] items-center w-full md:max-w-[45%]">
           <span>ماه:</span>
-          <select class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
-            <option v-for="(m,i) in months" :key="i" :selected="selectedMonth == m" :value="m.id">{{ m.name }}</option>
+          <select v-model="selectedMonth" @change="changeMonth" class="border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
+            <option v-for="(m,i) in months" :key="i" :selected="selectedMonth == m" :value="m">{{ m.name }}</option>
           </select>
         </div>
       </div>
@@ -153,6 +153,12 @@ const getCount = () => {
       .then(res => {
         count.value = res
       })
+}
+
+const changeYear = (e) => {
+}
+
+const changeMonth = (e) => {
 }
 
 onMounted(() => {

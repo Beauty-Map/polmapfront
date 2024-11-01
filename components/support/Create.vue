@@ -1,9 +1,9 @@
 <template>
- <div class="w-full flex flex-col justify-start items-center">
-   <div class="w-full mt-[60px] gap-[20px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[50px] py-[60px] px-[40px]">
+ <div class="w-full flex flex-col justify-start items-center pb-[80px]">
+   <div class="w-full mt-[60px] gap-[20px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[20px] md:rounded-[50px] py-[30px] px-[20px] md:py-[60px] md:px-[40px]">
      <h3>تیکت به پشتیبانی</h3>
-     <div class="w-full max-w-[80%] flex flex-col justify-start items-center">
-       <div class="w-full flex flex-row gap-x-[20px]  justify-between items-center">
+     <div class="w-full max-w-full md:max-w-[80%] flex flex-col justify-start items-center">
+       <div class="w-full flex flex-row gap-x-[20px] flex-wrap justify-between items-center">
          <ChooseTicketSubjectInput class="mb-[40px]" v-model="form.subject"/>
          <TicketTitleInput class="mb-[40px]" v-model="form.title"/>
        </div>
