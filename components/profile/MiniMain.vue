@@ -5,7 +5,7 @@
       <TextInput title="نام و نام خانوادگی *" v-model="form.full_name"/>
       <EmailInput title="ایمیل *" v-model="form.email" :disabled="true"/>
       <TelInput title="شماره موبایل *" v-model="form.phone_number"/>
-      <NationalCodeInput title="کد ملی" v-model="form.national_code"/>
+<!--      <NationalCodeInput title="کد ملی" v-model="form.national_code"/>-->
       <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
 <!--      <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>-->
 <!--      <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id"/>-->
@@ -62,7 +62,7 @@ const form = ref({
   email: user.value?.email,
   full_name: user.value?.full_name,
   phone_number: user.value?.phone_number,
-  national_code: user.value?.national_code,
+  // national_code: user.value?.national_code,
   birth_date: user.value?.birth_date,
   gender: user.value?.gender,
   // address: user.value?.address,
@@ -84,7 +84,7 @@ const doSaveProfile = async () => {
   loading.value = true
   const data = {
     full_name: form.value?.full_name,
-    national_code: form.value?.national_code,
+    // national_code: form.value?.national_code,
     birth_date: form.value?.birth_date,
     // gender: form.value?.gender,
     phone_number: form.value?.phone_number,

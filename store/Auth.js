@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import {ofetch} from "ofetch";
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null,

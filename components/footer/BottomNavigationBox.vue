@@ -118,18 +118,15 @@ const openWithdrawPage = () => {
   router.push('/financial')
 }
 
-const openProfilePage = () => {
-  router.push('/profile')
-  // store.openProfileDrawer()
-}
-
 const onRouteChanged = (route: string) => {
   if (route == '/dashboard') {
     index.value = 1
   } else if (route == '/learn') {
     index.value = 2
-  } else if (route=='/financial') {
+  } else if (route=='/earn') {
     index.value = 3
+  } else if (route=='/financial') {
+    index.value = 4
   } else if (route.startsWith('/financial')) {
     index.value = 4
   } else if (route.startsWith('/statistics')) {

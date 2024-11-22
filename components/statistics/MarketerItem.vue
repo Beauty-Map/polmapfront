@@ -14,7 +14,7 @@
   </div>
   <div class="w-full flex-row justify-start items-center border border-[#e1e1e1] rounded-[10px] md:hidden flex px-[10px] py-[10px]">
     <img :src="avatar" alt="" class="w-[45px] h-[45px]">
-    <div class="text-black text-right mr-[5px] font-medium leading-[26px] text-[20px]">{{ getName }}</div>
+    <div class="text-black text-right mr-[5px] font-medium leading-[22px] text-[16px]">{{ getName }}</div>
   </div>
 </template>
 

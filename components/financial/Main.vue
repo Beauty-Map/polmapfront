@@ -14,6 +14,8 @@
             :key="i"
             :title="w.type_fa"
             :amount="w.amount"
+            :status-fa="w.status_fa"
+            :status="w.status"
             :created-at="w.created_at"
         />
         <InfiniteLoading :firstload="true" v-if="showInfiniteScroll" class="mx-auto" @infinite="paginateDebounce"/>

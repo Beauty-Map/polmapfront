@@ -43,8 +43,8 @@ const auth = useAuthStore()
 const user = ref(auth.user)
 
 const getBanner = computed(() => '/images/panel/header.png')
-const getAvatar = computed(() => user.avatar ? user.avatar : '/images/avatar.png')
-const getUserRole = computed(() => user.role ? user.role : 'بازاریاب')
+const getAvatar = computed(() => user.value?.avatar ? user.value?.avatar : '/images/avatar.png')
+const getUserRole = computed(() => user.value?.role ? user.value?.role : 'بازاریاب')
 
 const router = useRouter()
 const store = useDrawerStore()

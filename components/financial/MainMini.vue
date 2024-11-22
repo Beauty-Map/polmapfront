@@ -9,13 +9,13 @@
         <div class="font-medium text-[16px] text-white w-full leading-[26px] text-center mt-[10px]">موجودی</div>
       </div>
       <div class="w-full flex flex-row gap-x-[10px] justify-evenly items-center mt-[26px]">
-        <nuxt-link to="/financial" class="flex flex-col justify-start items-center text-center" >
+        <nuxt-link to="/financial/withdraw" class="flex flex-col justify-start items-center text-center" >
           <div class="px-[18px] rounded-full py-[18px] bg-[rgba(19,60,62,0.35)]">
             <FinancialWhiteIcon />
           </div>
           <span class="whitespace-nowrap text-white mt-[10px] font-semibold text-[14px] leading-[20px]">برداشت موجودی</span>
         </nuxt-link>
-        <nuxt-link to="/financial/account" class="flex flex-col justify-start items-center text-center" >
+        <nuxt-link to="/financial/history" class="flex flex-col justify-start items-center text-center" >
           <div class="px-[18px] rounded-full py-[18px] bg-[rgba(19,60,62,0.35)]">
             <CardWhiteIcon />
           </div>
@@ -29,9 +29,12 @@
           :key="i"
           :title="w.type_fa"
           :amount="w.amount"
+          :status-fa="w.status_fa"
+          :status="w.status"
           :created-at="w.created_at"
       />
       <InfiniteLoading :firstload="true" v-if="showInfiniteScroll" class="mx-auto" @infinite="paginateDebounce"/>
+      <div v-if="requests.length == 0" class="w-full text-center font-bold text-lg mt-4">موردی یافت نشد!</div>
     </div>
   </div>
 </template>

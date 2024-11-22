@@ -4,7 +4,7 @@
       با ارسال لینک و دعوت از دیگران میتونی کسب درآمد کنی
     </p>
     <div class="w-full flex flex-col justify-start items-start mt-8 gap-16">
-      <button @click="shareApp" class="bg-[#085EC2] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"
+      <button @click="shareApp(app)" class="bg-[#085EC2] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"
         v-for="(app, i) in appList"
         :key="i"
       >

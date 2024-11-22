@@ -6,7 +6,7 @@
           <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
           <EmailInput :disabled="true" title="ایمیل" v-model="form.email"/>
           <TelInput title="شماره موبایل" v-model="form.phone_number"/>
-          <TextInput title="کد ملی" v-model="form.national_code"/>
+<!--          <TextInput title="کد ملی" v-model="form.national_code"/>-->
           <BirthDateInput title="تاریخ تولد" v-model="form.birth_date"/>
           <SelectInput :items="genderList" title="جنسیت" v-model="form.gender"/>
           <ChooseCityInput title="شهر محل سکونت" v-model="form.city_id"/>

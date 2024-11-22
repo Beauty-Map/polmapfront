@@ -52,6 +52,7 @@ const user = ref(auth.user)
 const loading = ref(false)
 
 const app = useNuxtApp()
+const router = useRouter()
 
 const form = ref({
   amount: 1000
@@ -73,6 +74,7 @@ const doWithdraw = async () => {
         form.value.amount = 1000
         app.$toast.success('درخواست برداشت شما با موفقیت ثبت شد', {rtl: true})
         loading.value = false
+        router.back()
       })
       .catch(err => {
         if (err.statusCode == 422) {
