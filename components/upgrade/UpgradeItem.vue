@@ -4,7 +4,7 @@
       <span>{{ `پنل ${title}` }}</span>
     </div>
     <button class="rounded-[10px] px-2 h-[38px] flex justify-center items-center text-white font-normal text-[12px] leading-[14px] bg-[#085EC2] shadow-[0px_4px_4px_0px_#00000040] min-w-[80px] text-center">
-      <span>{{ price }}</span>
+      <span>{{ parseFloat(price.toString()).toString() }}</span>
       <span class="mr-[5px]">TON</span>
     </button>
   </div>

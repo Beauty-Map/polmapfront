@@ -1,7 +1,8 @@
 <template>
   <div class="w-full overflow-y-auto md:max-w-[500px]">
-    <EmailInput title="ایمیل" v-model="form.email"/>
-    <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
+    <EmailInput title="ایمیل خود را وارد کنید" v-model="form.email" class="px-[2px]"/>
+    <PasswordInput title="یک کلمه عبور برای خود انتخاب کنید" v-model="form.password" class="px-1 mt-[27px]"/>
+    <TextInput title="کد معرف خود را وارد کنید" v-model="form.ref_code" v-if="!form.ref_code" class="px-1 mt-[27px]"/>
     <PolicyAndRulesButton class="mt-[24px]" v-model="form.accept_policy"/>
     <MainActionButton :disabled="loading" class="mt-[24px]" @click="doRegister">
       <div v-if="loading">
@@ -29,17 +30,23 @@ import EmailInput from "~/components/input/EmailInput.vue";
 import PasswordInput from "~/components/input/PasswordInput.vue";
 import OtpDrawer from "~/components/drawer/OtpDrawer.vue";
 import LoadingComponent from "~/components/global/Loading.vue";
+import TextInput from "~/components/input/TextInput.vue";
+import {useAuthStore} from "~/store/Auth";
+
+const app = useNuxtApp()
+const router = useRouter()
+const auth = useAuthStore()
+const { emitOtpResetSignal } = useOtpResetSignal();
 
 const store = useDrawerStore()
-const router = useRouter()
-const app = useNuxtApp()
 const openDrawer = ref(false)
 const loading = ref(false)
 
 const form = ref({
   email: '',
   password: '',
-  accept_policy: false
+  accept_policy: false,
+  ref_code: ''
 })
 
 
@@ -95,20 +102,41 @@ const resend = async (code: string) => {
   }
 }
 
+const validated = () => {
+  let validated = true
+  if (!form.value.email) {
+    app.$toast.error('لطفا ایمیل خود را وارد کنید', {rtl: true})
+    validated = false
+  }
+  if (!form.value.password) {
+    app.$toast.error('لطفا پسورد خود را وارد کنید', {rtl: true})
+    validated = false
+  }
+  if (!form.value.ref_code) {
+    app.$toast.error('لطفا کد معرف خود را وارد کنید', {rtl: true})
+    validated = false
+  } else if(form.value.ref_code.length != 6) {
+    app.$toast.error('کد معرف باید 6 رقم باشد', {rtl: true})
+    validated = false
+  }
+  if (!form.value.accept_policy) {
+    app.$toast.error('لطفا تیک گزینه تایید قوانین را بزنید', {rtl: true})
+    validated = false
+  }
+  return validated
+}
+
 const doRegister = async () => {
   if (loading.value) return
+  if (!validated()) {
+    return
+  }
   loading.value = true
-  const ref = useCookie('referralId', {
-    maxAge: 60 * 60 * 24 * 30, // 7 days
-    path: '/',
-    sameSite: 'lax',
-  });
   const data = {
     email: form.value.email,
     password: form.value.password,
-    referral_code: ref.value?.toString(),
+    referrer_code: form.value.ref_code,
   }
-
   const {$postRequest: postRequest}=app
   postRequest('/auth/register', data)
       .then(res => {
@@ -118,6 +146,7 @@ const doRegister = async () => {
         openDrawerClicked()
       })
       .catch(err => {
+        emitOtpResetSignal();
         const errors = Object.values(err.data.errors)
         for (const k in errors) {
           for (const e in errors[k]) {
@@ -134,6 +163,16 @@ const openLoginModal = () => {
   router.push('/')
 }
 
+onMounted(()=>{
+  const refC = useCookie('referralId', {
+    maxAge: 60 * 60 * 24 * 30,
+    path: '/',
+    sameSite: 'lax',
+  });
+  if (refC.value) {
+    form.value.ref_code = refC.value.toString()
+  }
+})
 </script>
 
 <style scoped>
