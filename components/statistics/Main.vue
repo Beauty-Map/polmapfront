@@ -25,7 +25,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         درآمد از حق عضویت بازاریابان
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         تعداد هنرمندان دعوت شده
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
@@ -34,7 +34,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         تعداد بازاریابان
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         کل درآمد شما از فروش محصول
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
@@ -43,7 +43,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         تعداد بازاریاب سطح یک
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         درآمد شما از فروش سطح یک
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
@@ -52,7 +52,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         تعداد بازاریاب سطح دو
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         درآمد شما از فروش سطح دو
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
@@ -61,7 +61,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         تعداد بازاریاب سطح سه
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         درآمد شما از فروش سطح سه
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
@@ -70,7 +70,7 @@
       <div class="text-[14px] py-1" v-if="id == 'pol_map'">
         تعداد بازاریاب سطح چهار
       </div>
-      <div class="text-[14px] py-1" v-if="id == 'beauty'">
+      <div class="text-[14px] py-1" v-if="id == 'beauty_map'">
         درآمد شما از فروش سطح چهار
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
