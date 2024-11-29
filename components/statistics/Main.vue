@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col justify-start items-center gap-y-[50]">
+  <div class="w-full flex-grow mt-[50px] flex flex-col justify-start items-center gap-y-[50px]">
     <div class="w-full mt-[30px] md:mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[25px] md:rounded-[25px] py-[30px] md:py-[60px] px-[20px] md:px-[40px]">
       <div class="w-full flex flex-col justify-center items-center gap-y-4">
         <div class="w-full md:max-w-[820px] gap-y-[10px] flex flex-row flex-wrap justify-between items-center ">
@@ -26,16 +26,16 @@
         درآمد از حق عضویت بازاریابان
       </div>
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        تعداد هنرمندان دعوت شده
+        کل درآمد شما از فروش محصول
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
-        {{ statistics.bonus }}
+        {{ parseFloat(statistics.bonus.toString()) }}
       </div>
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
         تعداد بازاریابان
       </div>
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        کل درآمد شما از فروش محصول
+        تعداد هنرمندان دعوت شده
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
         {{ statistics.all }}
@@ -108,6 +108,7 @@ onMounted(() => {
       years.value.push(i)
     }
     const monthsList = [
+      'همه ماه ها',
       'فروردین',
       'اردیبهشت',
       'خرداد',
@@ -127,7 +128,7 @@ onMounted(() => {
         name: monthsList[i-1]
       })
     }
-    selectedMonth.value = months.value[0]
+    selectedMonth.value = months.value[1]
   })
 })
 
@@ -148,12 +149,15 @@ const resetYearAndMonth = () => {
 const getStatistics = () => {
   let url = `/own/statistics?app=${route.params.id}`
   if (selectedYear.value && selectedMonth.value) {
-    url += `month=${selectedMonth.value.id}&year=${selectedYear.value}`
+    if (selectedMonth.value.id != 0) {
+      url += `&month=${selectedMonth.value.id}`
+    }
+    url += `&year=${selectedYear.value}`
   }
   const {$getRequest: getRequest}=useNuxtApp()
   getRequest(url)
       .then(res => {
-        console.log(res, "res")
+        statistics.value = res
       })
 }
 

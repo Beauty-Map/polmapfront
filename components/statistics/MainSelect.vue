@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col justify-start items-center gap-y-[50]">
+  <div class="w-full flex-grow mt-[50px] flex flex-col justify-start items-center gap-y-[50px]">
     <div class="w-full flex flex-col justify-start items-start mt-8 gap-16">
       <button @click="shareApp(app)" class="bg-[#085EC2] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"
               v-for="(app, i) in appList"
@@ -7,6 +7,10 @@
       >
         {{app.app_name}}
       </button>
+      <nuxt-link to="/statistics/details" class="bg-[#D70074] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"
+      >
+        مشاهده جزئیات درآمد
+      </nuxt-link>
     </div>
   </div>
 </template>

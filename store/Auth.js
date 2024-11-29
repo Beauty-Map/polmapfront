@@ -32,6 +32,7 @@ export const useAuthStore = defineStore('auth', {
                         }
                     })
                     .then(res => {
+                        console.log(res, "dssdsd")
                         this.user = res?.data
                         this.token = token.value?.toString() ?? ''
                     })
