@@ -50,6 +50,7 @@ definePageMeta({
 const auth = useAuthStore()
 const showModal = ref<boolean>(false)
 const appList = ref<IApplication[]>([])
+const router = useRouter()
 const getApplications = async () => {
   const res = await useCustomFetch('/applications', {
     method: "GET"
@@ -87,6 +88,10 @@ const closeRefModal = () => {
   showModal.value = false
 }
 onMounted(() => {
+  if (!auth.user?.subscription) {
+    router.push('/dashboard')
+    return
+  }
   nextTick(() => getApplications())
 })
 </script>
