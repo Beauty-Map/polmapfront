@@ -9,7 +9,7 @@
         <DangerIcon @click="openProfileDrawer"/>
       </template>
     </MenuLink>
-    <MenuLink :to="'/plan'">
+    <MenuLink :is-link="false" @click="openPlanPage">
       <template #icon>
         <IconsDollarGrayIcon />
       </template>
@@ -39,6 +39,11 @@
       </template>
       <template #title>خروج</template>
     </MenuLink>
+    <Modal @close="onModalClose" :show-close="true" :open="showModal">
+      <div class="w-full flex flex-col justify-start items-center mt-4 max-w-[340px] min-w-[300px]">
+        تا پایان بهار سال 1404 استفاده از پول مپ رایگان است از این فرصت محدود استفاده کنید و تیم بازاریابی خود را گسترش دهید!
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -59,15 +64,28 @@ import {useAuthStore} from "~/store/Auth";
 import SideBarLink from "~/components/sidebar/SideBarLink.vue";
 
 const store = useDrawerStore()
+const app = useNuxtApp()
 const auth = useAuthStore()
 const user = ref(auth.user)
 const selectedApp = computed(() => useAppStore().getSelectedApp)
 const router = useRouter()
+const showModal = ref(false)
+
+const onModalClose = () => {
+  showModal.value = false
+}
 
 const openProfileDrawer = () => {
   router.push('/profile')
   store.closeAllDrawers()
 }
+
+const openPlanPage = () => {
+  showModal.value = true
+  return;
+  router.push('/plan')
+}
+
 const exit = () => {
   const cookie = useCookie('token')
   cookie.value = ''

@@ -20,10 +20,6 @@ import AppMenuDrawer from "~/components/drawer/AppMenuDrawer.vue";
 import UserProfileDrawer from "~/components/drawer/UserProfileDrawer.vue";
 import BottomNavigationBox from "~/components/footer/BottomNavigationBox.vue";
 
-definePageMeta({
-  middleware: 'auth',
-})
-
 const nuxt = useNuxtApp()
 const loading = ref<boolean>(true)
 
