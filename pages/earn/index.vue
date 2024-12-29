@@ -88,10 +88,10 @@ const closeRefModal = () => {
   showModal.value = false
 }
 onMounted(() => {
-  if (!auth.user?.subscription) {
-    router.push('/dashboard')
-    return
-  }
+  // if (!auth.user?.subscription) {
+  //   router.push('/dashboard')
+  //   return
+  // }
   nextTick(() => getApplications())
 })
 </script>
