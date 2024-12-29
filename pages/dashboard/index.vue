@@ -1,6 +1,6 @@
 <template>
   <div
-      class="flex flex-col overflow-y-scroll w-full duration-700 ease-in-out bg-white z-[999]"
+      class="flex flex-col overflow-y-auto w-full duration-700 ease-in-out bg-white z-[999]"
   >
     <div class="flex flex-col justify-start items-center gap-y-[20px]">
       <AppMenuDrawerHeader />
