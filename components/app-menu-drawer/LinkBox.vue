@@ -40,7 +40,7 @@
       <template #title>خروج</template>
     </MenuLink>
     <Modal @close="onModalClose" :show-close="true" :open="showModal">
-      <div class="w-full flex flex-col justify-start items-center mt-4 max-w-[340px] min-w-[300px]">
+      <div class="w-full flex flex-col justify-start items-center mt-4 max-w-[340px]">
         تا پایان بهار سال 1404 استفاده از پول مپ رایگان است از این فرصت محدود استفاده کنید و تیم بازاریابی خود را گسترش دهید!
       </div>
     </Modal>

@@ -20,6 +20,7 @@
             :price="p.price"
             :key="i"
             @click="selectSubscription(p)"
+            :is-payable="p.date.is_payable"
         />
       </div>
     </div>
@@ -82,6 +83,7 @@ const goBack = () => {
 }
 
 const selectSubscription = (p: ISubscription) => {
+  if (!p.date.is_payable) return
   selectedSubscription.value = p
   setTimeout(() => {
     openSelectSubscriptionModal()
@@ -121,8 +123,8 @@ const doPay = () => {
     app: 'polmap'
   })
       .then(res => {
-        app.$toast.success('در حال انتقال به درگاه پرداخت می باشید. لطفا صبر کنید.', {rtl: true})
-        window.open(res.payment_url)
+        // app.$toast.success('در حال انتقال به درگاه پرداخت می باشید. لطفا صبر کنید.', {rtl: true})
+        // window.open(res.payment_url)
         router.push(route.path + `/transactions?id=${res.payment_id}`)
       })
       .catch(err => {
