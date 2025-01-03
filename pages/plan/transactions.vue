@@ -58,7 +58,7 @@
           <LoadingComponent />
         </span>
           <span v-else class="flex flex-row gap-2">
-          <span>بررسی مجدد وضعیت</span>
+          <span>بررسی وضعیت پرداخت</span>
           <LoadingComponent v-if="status == 'created'"/>
         </span>
         </button>

@@ -81,8 +81,8 @@ const openProfileDrawer = () => {
 }
 
 const openPlanPage = () => {
-  showModal.value = true
-  return;
+  // showModal.value = true
+  // return;
   router.push('/plan')
 }
 
