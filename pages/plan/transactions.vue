@@ -11,6 +11,10 @@
             <span>هنرمند عزیز</span>
             <div class="leading-8">
               <div>مبلغ مورد نظر را واریز کنید</div>
+              <div class="text-center text-black font-semibold text-[20x] leading-[31px] flex flex-row gap-x-2 items-center">
+                <span v-format-number>{{ parseFloat(subscription.price) }}</span>
+                <span>TON</span>
+              </div>
               <div>
                 آدرس:
                 <span class="text-red-custom bg-red-100 px-2 py-1.5 rounded-full !text-xs">الزامی*</span>
