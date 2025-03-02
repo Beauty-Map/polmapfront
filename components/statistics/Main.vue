@@ -31,15 +31,15 @@
       <div class="text-center border border-gray-500 rounded-md py-1">
         {{ parseFloat(statistics.bonus.toString()) }}
       </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
-        تعداد بازاریابان
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        تعداد هنرمندان دعوت شده
-      </div>
-      <div class="text-center border border-gray-500 rounded-md py-1">
-        {{ statistics.all }}
-      </div>
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">-->
+<!--        تعداد بازاریابان-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">-->
+<!--        تعداد هنرمندان دعوت شده-->
+<!--      </div>-->
+<!--      <div class="text-center border border-gray-500 rounded-md py-1">-->
+<!--        {{ statistics.all }}-->
+<!--      </div>-->
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
         تعداد بازاریاب سطح یک
       </div>
@@ -49,33 +49,33 @@
       <div class="text-center border border-gray-500 rounded-md py-1">
         {{ statistics.first }}
       </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
-        تعداد بازاریاب سطح دو
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        درآمد شما از فروش سطح دو
-      </div>
-      <div class="text-center border border-gray-500 rounded-md py-1">
-        {{ statistics.second }}
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
-        تعداد بازاریاب سطح سه
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        درآمد شما از فروش سطح سه
-      </div>
-      <div class="text-center border border-gray-500 rounded-md py-1">
-        {{ statistics.third }}
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
-        تعداد بازاریاب سطح چهار
-      </div>
-      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        درآمد شما از فروش سطح چهار
-      </div>
-      <div class="text-center border border-gray-500 rounded-md py-1">
-        {{ statistics.forth }}
-      </div>
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">-->
+<!--        تعداد بازاریاب سطح دو-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">-->
+<!--        درآمد شما از فروش سطح دو-->
+<!--      </div>-->
+<!--      <div class="text-center border border-gray-500 rounded-md py-1">-->
+<!--        {{ statistics.second }}-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">-->
+<!--        تعداد بازاریاب سطح سه-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">-->
+<!--        درآمد شما از فروش سطح سه-->
+<!--      </div>-->
+<!--      <div class="text-center border border-gray-500 rounded-md py-1">-->
+<!--        {{ statistics.third }}-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">-->
+<!--        تعداد بازاریاب سطح چهار-->
+<!--      </div>-->
+<!--      <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">-->
+<!--        درآمد شما از فروش سطح چهار-->
+<!--      </div>-->
+<!--      <div class="text-center border border-gray-500 rounded-md py-1">-->
+<!--        {{ statistics.forth }}-->
+<!--      </div>-->
     </div>
   </div>
 </template>

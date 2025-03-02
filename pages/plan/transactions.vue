@@ -19,7 +19,7 @@
                 آدرس:
                 <span class="text-red-custom bg-red-100 px-2 py-1.5 rounded-full !text-xs">الزامی*</span>
               </div>
-              <div class="text-[12px] sm:text-[14px] font-bold flex bg-[rgba(249, 249, 249, 1)] rounded-xl p-4 items-center justify-between w-full">
+              <div class="text-[12px] sm:text-[14px] font-bold flex flex-wrap bg-[rgba(249, 249, 249, 1)] rounded-xl p-4 items-center justify-between w-full">
                 {{ config.public.walletAddress }}
                 <span @click="doCopy(config.public.walletAddress)">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,8 +50,8 @@
                   </svg>
                 </span>
               </div>
-              <div>لطفا از حالت زیر استفاده نکنید!</div>
-              <img src="/images/memoo.gif" alt="">
+<!--              <div>لطفا از حالت زیر استفاده نکنید!</div>-->
+<!--              <img src="/images/memoo.gif" alt="">-->
             </div>
           </div>
         </div>
