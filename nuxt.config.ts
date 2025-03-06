@@ -12,8 +12,12 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@pinia/nuxt',
     "nuxt-lodash",
-    'dayjs-nuxt'
+    'dayjs-nuxt',
+    'nuxt-gtag',
   ],
+  gtag: {
+    id: 'google-site-verification=Kwc0sbxhD7BdDBrw1jPZvJTmmj6282qynD58FXMdT8U'
+  },
   tailwindcss: {
     cssPath: ['~/assets/css/tailwind.scss', {injectPosition: 'first'},],
     configPath: 'tailwind.config',
