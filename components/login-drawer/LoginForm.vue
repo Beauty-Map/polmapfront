@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full overflow-y-auto md:max-w-[500px]">
+  <div class="w-full overflow-y-auto">
     <EmailInput title="ایمیل" v-model="form.email"/>
     <PasswordInput title="کلمه عبور" v-model="form.password" class="mt-[27px]"/>
     <ResetPasswordLink class="mt-[18]"/>

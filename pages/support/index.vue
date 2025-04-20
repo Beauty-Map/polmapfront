@@ -1,13 +1,13 @@
 <template>
   <div
-      class="flex flex-col px-[17px] w-full h-screen md:h-auto"
+      class="flex flex-col px-[17px] w-full h-screen"
   >
     <div class="flex flex-col justify-start items-start mt-[17px]">
       <div class="w-full flex flex-row justify-start items-center">
         <Header />
         <BackIcon @click="goBack" />
       </div>
-      <div class="w-full flex-col min-h-[400px] justify-start items-start mt-[35px] md:border md:border-gray-500 md:rounded-[50px] md:py-[25px] px-[20px] flex gap-12">
+      <div class="w-full flex-col min-h-[400px] justify-start items-start mt-[35px] px-[20px] flex gap-12">
         <LazySupportItem
             :title="'تیکت به پشتیبانی'"
             @click="openTicketPage"

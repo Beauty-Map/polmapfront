@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-[#000000] w-full md:max-w-[320px] cursor-pointer flex flex-row justify-between items-center py-[15px] px-[15px] rounded-[12px] md:rounded-[20px]">
+  <div class="border border-[#000000] w-full cursor-pointer flex flex-row justify-between items-center py-[15px] px-[15px] rounded-[12px]">
     <div class="flex flex-row justify-start items-center">
       <CourseItemIcon />
       <span>{{ title }}</span>

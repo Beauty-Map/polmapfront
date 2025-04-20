@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex flex-row justify-between flex-wrap md:justify-center items-center relative">
-    <div class="md:absolute md:right-[20px] md:top-[10px] cursor-pointer border border-[#A9A7A7] py-[8px] px-[8px] gap-[10px] rounded-[15px] flex flex-row justify-between items-center">
+  <div class="w-full flex flex-row justify-between flex-wrap items-center relative">
+    <div class="cursor-pointer border border-[#A9A7A7] py-[8px] px-[8px] gap-[10px] rounded-[15px] flex flex-row justify-between items-center">
       <MinusCircleRedIcon />
       <div class="text-[22px] text-right leading-[30px] text-[#133C3E] w-full flex flex-row justify-start items-center gap-[4px] min-w-[150px]" >
         <span v-format-number>{{ user.coins }}</span>

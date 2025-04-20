@@ -1,15 +1,7 @@
 <template>
-  <div class="w-full h-full md:flex flex-col justify-start items-start hidden">
+  <div class="w-full h-full flex-col justify-start items-start">
     <Header title="پروفایل"/>
     <Main />
-  </div>
-  <div class="w-full mb-[50px] md:hidden">
-    <div class="flex flex-row items-center justify-between">
-      <div></div>
-      <div class="font-semibold text-[16px] text-[#141414] leading-[24px]">پروفایل</div>
-      <BackIcon @click="goBack" />
-    </div>
-    <MiniMain />
   </div>
 </template>
 

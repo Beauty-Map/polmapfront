@@ -1,15 +1,12 @@
 <template>
-  <div class="page h-full w-full bg-[#2920D9] flex flex-col relative">
+  <div class="page h-full max-w-[425px] w-full mx-auto bg-[#2920D9] flex flex-col relative">
     <PageLoading v-if="loading"/>
-    <MainHeader class="md:flex hidden"/>
     <AppMenuDrawer />
     <UserProfileDrawer />
-    <div class="w-full min-h-screen flex bg-[#2920D9] md:bg-white md:px-[34px] md:py-[20px] flex-row justify-start items-start">
-      <SideBar class="md:flex hidden"/>
+    <div class="w-full min-h-screen flex bg-[#2920D9] flex-row justify-start items-start">
       <slot />
     </div>
-    <Footer class="hidden md:flex" />
-    <BottomNavigationBox class="md:hidden"/>
+    <BottomNavigationBox class=""/>
   </div>
 </template>
 

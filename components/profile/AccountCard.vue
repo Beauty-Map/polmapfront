@@ -1,17 +1,17 @@
 <template>
-  <div class="card-item gap-y-[20px] text-white flex flex-col justify-start items-start w-full aspect-[7/4] rounded-[20px] px-[15px] py-[15px] md:px-[30px] md:py-[30px]">
+  <div class="card-item gap-y-[20px] text-white flex flex-col justify-start items-start w-full aspect-[7/4] rounded-[20px] px-[15px] py-[15px] ">
     <div class="w-full flex flex-row justify-between items-center">
-      <img src="/images/bank/bmi.png" alt="" class="md:w-[50px] w-[30px]">
-      <span class="font-normal text-[16px] leading-[18px] md:text-[26px] md:leading-[24px]">{{ getBankName }}</span>
+      <img src="/images/bank/bmi.png" alt="" class=" w-[30px]">
+      <span class="font-normal text-[16px] leading-[18px] ">{{ getBankName }}</span>
     </div>
     <div class="text-left w-full">
-      <span class="w-full break-words font-normal text-[16px] leading-[16px] md:text-[22px] md:leading-[24px]" v-html="getSheba"></span>
+      <span class="w-full break-words font-normal text-[16px] leading-[16px] ]" v-html="getSheba"></span>
     </div>
     <div class="text-right w-full">
-      <span class="font-medium text-[16px] leading-[18px] md:text-[24px] md:leading-[24px]">{{ getUserFullName }}</span>
+      <span class="font-medium text-[16px] leading-[18px] ">{{ getUserFullName }}</span>
     </div>
     <div class="text-left w-full">
-      <span class="font-normal text-[16px] leading-[18px] md:text-[24px] md:leading-[24px]">{{ getCardNumber }}</span>
+      <span class="font-normal text-[16px] leading-[18px] ">{{ getCardNumber }}</span>
     </div>
   </div>
 </template>

@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <button @click="doSave" class="mb-[80px] md:mb-0 mx-auto mt-[67px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
+    <button @click="doSave" class="mb-[80px]  mx-auto mt-[67px] max-w-[500px] cursor-pointer text-[#141414] flex flex-row justify-center items-center rounded-[20px] bg-[#1EFF81] h-[48px] w-full">
       ذخیره اطلاعات
     </button>
   </div>

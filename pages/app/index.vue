@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-start items-start mb-[60px] md:mb-0">
+  <div class="w-full h-full flex flex-col justify-start items-start mb-[60px]">
     <Header :title="selectedApp.app_name"/>
     <DashboardMain />
   </div>

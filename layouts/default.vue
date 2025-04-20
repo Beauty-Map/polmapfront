@@ -1,5 +1,5 @@
 <template>
-  <div class="page h-full w-full flex flex-col relative" :class="isMobile ? 'px-[25px]' : ''">
+  <div class="page h-full max-w-[425px] w-full mx-auto flex flex-col relative" :class="isMobile ? 'px-[25px]' : ''">
     <ResetPasswordDrawer />
     <SetPasswordDrawer />
     <PageLoading v-if="loading"/>

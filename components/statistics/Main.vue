@@ -1,24 +1,24 @@
 <template>
   <div class="w-full flex-grow mt-[50px] flex flex-col justify-start items-center gap-y-[50px]">
-    <div class="w-full mt-[30px] md:mt-[60px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[25px] md:rounded-[25px] py-[30px] md:py-[60px] px-[20px] md:px-[40px]">
+    <div class="w-full mt-[30px] h-full flex flex-col justify-start items-center border border-[#A9A7A7] rounded-[25px] py-[30px] px-[20px]">
       <div class="w-full flex flex-col justify-center items-center gap-y-4">
-        <div class="w-full md:max-w-[820px] gap-y-[10px] flex flex-row flex-wrap justify-between items-center ">
+        <div class="w-full gap-y-[10px] flex flex-row flex-wrap justify-between items-center ">
           <div class="flex flex-row justify-start gap-x-[4px] items-center max-w-[47%]">
             <span>سال:</span>
-            <select v-model="selectedYear" @change="changeYear" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
+            <select v-model="selectedYear" @change="changeYear" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] outline-[#A9A7A7] px-[12px] py-[8px] w-full">
               <option selected disabled :value="null" v-if="!selectedYear">از ابتدا</option>
               <option v-for="(y,i) in years" :key="i" :selected="selectedYear == y" :value="y">{{ y }}</option>
             </select>
           </div>
           <div class="flex flex-row justify-start gap-x-[4px] items-center max-w-[47%]">
             <span>ماه:</span>
-            <select v-model="selectedMonth" @change="changeMonth" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px] w-full">
+            <select v-model="selectedMonth" @change="changeMonth" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] outline-[#A9A7A7] px-[12px] py-[8px] w-full">
               <option selected disabled :value="null" v-if="!selectedMonth">از ابتدا</option>
               <option v-for="(m,i) in months" :key="i" :selected="selectedMonth == m" :value="m">{{ m.name }}</option>
             </select>
           </div>
         </div>
-        <button @click="resetYearAndMonth" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] md:rounded-[20px] outline-[#A9A7A7] px-[12px] md:px-[24px] py-[8px] md:py-[18px] md:min-w-[150px] md:max-w-[240px]">از ابتدا تا اکنون</button>
+        <button @click="resetYearAndMonth" class="text-[12px] border border-[#A9A7A7] focus:outline-[#A9A7A7] rounded-[10px] outline-[#A9A7A7] px-[12px]  py-[8px] ">از ابتدا تا اکنون</button>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-4 mt-8">

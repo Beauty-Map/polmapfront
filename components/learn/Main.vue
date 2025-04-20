@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-full md:border md:border-[#A9A7A7] md:rounded-[50px] mt-[30px] py-[16px] md:px-[40px] flex flex-col justify-start items-start">
-    <div class="w-full flex flex-row flex-wrap sm:gap-x-[10%] md:gap-x-[20px] gap-y-[20px]">
+  <div class="w-full h-full mt-[30px] py-[16px] flex flex-col justify-start items-start">
+    <div class="w-full flex flex-row flex-wrap sm:gap-x-[10%] gap-y-[20px]">
       <div class="w-full h-[200px] flex flex-row justify-center items-center" v-if="loading">
         <LoadingComponent />
       </div>
@@ -10,7 +10,7 @@
         :key="i"
         :title="c.title"
         @click="openCourse(c)"
-        class="md:w-[30%] sm:w-[45%] w-full"
+        class=" sm:w-[45%] w-full"
         :selected="selectedCourse && selectedCourse.id == c.id"
       />
       <LazyPagination
