@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="w-full h-full flex flex-row flex-wrap">
-      <div class="w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
+      <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
         <div class="w-full gap-[20px] py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
           <TextInput title="نام و نام خانوادگی" v-model="form.full_name"/>
           <EmailInput :disabled="true" title="ایمیل" v-model="form.email"/>
@@ -15,7 +15,7 @@
           <TextInput title="تحصیلات" v-model="form.education"/>
         </div>
       </div>
-      <div class="w-full lg:w-1/2 h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
+      <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full border border-[#A9A7A7] rounded-[50px] flex flex-col justify-start items-start">
           <UserAvatar @choose="onUserAvatarChanged" :avatar="user.avatar" class="mt-[35px] mb-[22px]"/>
           <AccountCard
@@ -58,6 +58,7 @@ const auth = useAuthStore()
 const user = ref(auth.user)
 const app = useNuxtApp()
 const store = useDrawerStore()
+const router = useRouter()
 
 const form = ref({
   email: user.value?.email,
@@ -121,6 +122,8 @@ const doSave = async () => {
   if (res.data.value != null) {
     app.$toast.success('اطلاعات شما با موفقیت ویرایش شد', {rtl: true})
     store.closeAllDrawers()
+    await auth.own()
+    router.back()
   }
 }
 </script>

@@ -41,10 +41,10 @@
 <!--        {{ statistics.all }}-->
 <!--      </div>-->
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'pol_map'">
-        تعداد بازاریاب سطح یک
+        تعداد بازاریاب
       </div>
       <div class="text-[14px] py-1 h-[34px]" v-if="id == 'beauty_map'">
-        درآمد شما از فروش سطح یک
+        درآمد شما از فروش
       </div>
       <div class="text-center border border-gray-500 rounded-md py-1">
         {{ statistics.first }}

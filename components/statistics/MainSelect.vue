@@ -7,10 +7,10 @@
       >
         {{app.app_name}}
       </button>
-      <nuxt-link to="/statistics/details" class="bg-[#D70074] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"
-      >
-        مشاهده جزئیات درآمد
-      </nuxt-link>
+<!--      <nuxt-link to="/statistics/details" class="bg-[#D70074] text-white cursor-pointer border-[#133C3E] flex flex-row justify-center items-center rounded-[8px] h-[48px] w-full"-->
+<!--      >-->
+<!--        مشاهده جزئیات درآمد-->
+<!--      </nuxt-link>-->
     </div>
   </div>
 </template>

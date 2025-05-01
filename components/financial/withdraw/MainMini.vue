@@ -8,7 +8,10 @@
       <div v-if="loading">
         <LoadingComponent />
       </div>
-      <div v-else class="text-white text-center text-[20px] leading-[30px]">ثبت آدرس کیف پول</div>
+      <div v-else class="text-white text-center text-[20px] leading-[30px]">
+        <span v-if="form.ton_wallet_address">ویرایش آدرس کیف پول</span>
+        <span v-else>ثبت آدرس کیف پول</span>
+      </div>
     </MainActionButton>
     <BalanceInput v-model="auth.user.income"/>
     <MainActionButton :disabled="loadingWithdraw" class="mb-[18px]" @click="doWithdraw">
@@ -17,7 +20,6 @@
       </div>
       <div v-else class="text-white text-center text-[20px] leading-[30px]">برداشت</div>
     </MainActionButton>
-
     <div class="w-full flex flex-row flex-wrap justify-evenly items-center">
       <div class="flex flex-col justify-start items-center">
         <CircleProgressBar :value="auth.user.withdraws" :max="auth.user.all_income" colorUnfilled="#FF6832" size="120" rounded>
@@ -67,6 +69,10 @@ const form = ref({
 const doWithdraw = async () => {
   if (!auth.user?.ton_wallet_address) {
     app.$toast.error('پیش از ثبت درخواست برداشت لطفا آدرس کیف پول خود را ثبت کنید!', {rtl: true})
+    return
+  }
+  if (auth.user.income < 10) {
+    app.$toast.error('حداقل مبلغ قابل برداشت 10 TON می باشد!', {rtl: true})
     return
   }
   if (loadingWithdraw.value) return

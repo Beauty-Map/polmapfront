@@ -1,8 +1,8 @@
 <template>
   <div class="w-full h-full border border-[#A9A7A7] rounded-[50px] mt-[30px] py-[6px] px-[10px] flex flex-col justify-start items-start">
     <div class="w-full flex flex-row justify-start items-start flex-wrap">
-      <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px]">
-        <h1 class="text-center lg:text-right w-full text-black font-normal text-[20px] leading-[25px] ">تعداد کاربران دعوت شده</h1>
+      <div class="w-full flex flex-col justify-start items-start gap-y-[45px]">
+        <h1 class="text-center w-full text-black font-normal text-[20px] leading-[25px] ">تعداد کاربران دعوت شده</h1>
         <div class="w-full flex flex-col justify-center items-center">
           <CircleProgressBar :value="user.withdraws" :max="user.all_income" colorUnfilled="blue" size="160" rounded>
             <span class="w-[75px] flex flex-col justify-center items-center text-[13px] text-center">
@@ -15,8 +15,8 @@
           <div class="ltr-dir"><span v-format-number>{{user.withdraws}}</span> / <span v-format-number>{{user.all_income}}</span></div>
         </div>
       </div>
-      <div class="w-full lg:w-1/2 flex flex-col justify-start items-start gap-y-[45px] mt-[20px]">
-        <h1 class="text-center lg:text-right w-full text-black font-normal text-[20px] leading-[25px] ">موجودی کیف پول شما</h1>
+      <div class="w-full flex flex-col justify-start items-start gap-y-[45px] mt-[20px]">
+        <h1 class="text-center w-full text-black font-normal text-[20px] leading-[25px] ">موجودی کیف پول شما</h1>
         <div class="bg-[#2920D9] rounded-[30px] text-center flex flex-col justify-start items-center py-[10px] px-[20px] min-w-full min-h-[150px]">
           <div class="flex flex-row justify-start items-center gap-x-[4px] text-white font-semibold text-[26px] leading-[35px] ">
             <span v-format-number>{{ user.income }}</span>

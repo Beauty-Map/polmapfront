@@ -2,7 +2,7 @@
   <div class="w-full overflow-y-auto">
     <EmailInput title="ایمیل خود را وارد کنید" v-model="form.email" class="px-[2px]"/>
     <PasswordInput title="یک کلمه عبور برای خود انتخاب کنید" v-model="form.password" class="px-1 mt-[27px]"/>
-    <TextInput title="کد معرف خود را وارد کنید" v-model="form.ref_code" v-if="!form.ref_code" class="px-1 mt-[27px]"/>
+    <TextInput title="کد معرف خود را وارد کنید" v-model="form.ref_code" class="px-1 mt-[27px]"/>
     <PolicyAndRulesButton class="mt-[24px]" v-model="form.accept_policy"/>
     <MainActionButton :disabled="loading" class="mt-[24px]" @click="doRegister">
       <div v-if="loading">

@@ -111,7 +111,6 @@ const openStatisticsPage = () => {
 }
 
 const openFinancialPage = () => {
-  router.push('/earn')
   if (!auth.user?.subscription) {
     useNuxtApp().$toast.error('برای دسترسی به این بخش ابتدا حق عضویت خود را پرداخت کنید!', {rtl: true})
     return

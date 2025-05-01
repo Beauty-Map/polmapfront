@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="w-full h-full flex flex-row flex-wrap">
-      <div class="w-full h-full mt-[30px] px-0 lg:px-[25px] flex flex-col justify-start items-start">
+      <div class="w-full h-full mt-[30px] px-0 flex flex-col justify-start items-start">
         <div class="gap-y-[20px] w-full py-[16px] px-[40px] h-full flex flex-col justify-start items-start">
           <AccountCard
               :account-full-name="form.account_full_name"

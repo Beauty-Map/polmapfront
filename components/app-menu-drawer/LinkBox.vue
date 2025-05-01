@@ -15,19 +15,19 @@
       </template>
       <template #title>پرداخت حق عضویت</template>
     </MenuLink>
-    <MenuLink :to="'/medias'">
+    <MenuLink :is-link="false" @click="openPage('/medias')">
       <template #icon>
         <BannerIcon />
       </template>
       <template #title>شبکه های اجتماعی</template>
     </MenuLink>
-    <MenuLink :to="'/learn'">
+    <MenuLink :is-link="false" @click="openPage('/learn')">
       <template #icon>
         <CourseIcon />
       </template>
       <template #title>آموزش</template>
     </MenuLink>
-    <MenuLink to="/support">
+    <MenuLink :is-link="false" @click="openPage('/support')">
       <template #icon>
         <ContactusIcon />
       </template>
@@ -81,9 +81,23 @@ const openProfileDrawer = () => {
 }
 
 const openPlanPage = () => {
-  // showModal.value = true
-  // return;
+  if (!user.value.is_profile_completed) {
+    app.$toast.error('برای فعال سازی این بخش لطفا پروفایل خود را تکمیل کنید!', {rtl: true})
+    return
+  }
   router.push('/plan')
+}
+
+const openPage = (page) => {
+  if (!user.value.is_profile_completed) {
+    app.$toast.error('برای فعال سازی این بخش لطفا پروفایل خود را تکمیل نمایید!', {rtl: true})
+    return
+  }
+  if (!user.value.subscription) {
+    app.$toast.error('برای فعال سازی این بخش لطفا حق عضویت را پرداخت نمایید!', {rtl: true})
+    return
+  }
+  router.push(page)
 }
 
 const exit = () => {
